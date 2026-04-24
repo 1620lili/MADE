@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700&amp;family=Manrope:wght@200;300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#5e605c",
+              "on-tertiary": "#f9f9f4",
+              "surface-container-high": "#e6e9e6",
+              "surface-bright": "#faf9f7",
+              "surface": "#faf9f7",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "on-tertiary-container": "#5b5c59",
+              "inverse-on-surface": "#9d9d9b",
+              "secondary-dim": "#664f2f",
+              "secondary-container": "#feddb3",
+              "surface-container": "#edeeeb",
+              "primary-fixed-dim": "#d6d4d3",
+              "on-primary-fixed": "#403f3f",
+              "surface-variant": "#e0e3e0",
+              "tertiary-fixed": "#f4f4ef",
+              "secondary": "#735b3a",
+              "primary-dim": "#535252",
+              "on-error": "#fff7f6",
+              "on-primary": "#faf7f6",
+              "secondary-fixed": "#feddb3",
+              "tertiary-dim": "#525450",
+              "primary-container": "#e5e2e1",
+              "error-dim": "#4e0309",
+              "outline-variant": "#afb3b0",
+              "background": "#faf9f7",
+              "secondary-fixed-dim": "#efd0a6",
+              "on-primary-container": "#525151",
+              "on-tertiary-fixed-variant": "#656763",
+              "inverse-surface": "#0d0e0e",
+              "on-tertiary-fixed": "#484a47",
+              "tertiary-container": "#f4f4ef",
+              "error": "#9f403d",
+              "primary": "#5f5e5e",
+              "surface-container-highest": "#e0e3e0",
+              "inverse-primary": "#ffffff",
+              "on-surface-variant": "#5c605d",
+              "surface-tint": "#5f5e5e",
+              "error-container": "#fe8983",
+              "on-secondary-container": "#644e2e",
+              "on-secondary-fixed-variant": "#6f5836",
+              "tertiary-fixed-dim": "#e5e6e1",
+              "surface-container-lowest": "#ffffff",
+              "surface-dim": "#d6dbd7",
+              "on-surface": "#2f3331",
+              "on-background": "#2f3331",
+              "primary-fixed": "#e5e2e1",
+              "on-error-container": "#752121",
+              "on-secondary-fixed": "#503c1d",
+              "surface-container-low": "#f3f4f1",
+              "outline": "#777c79",
+              "on-secondary": "#fff8f2"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            background-color: #faf9f7;
+            color: #2f3331;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#faf9f7]/80 dark:bg-stone-950/80 backdrop-blur-xl flex justify-between items-center px-12 h-24 w-full">
+<div class="text-2xl font-light tracking-[0.3em] text-[#1A1A1A] dark:text-white font-headline">LUXE ATELIER</div>
+<div class="hidden md:flex space-x-12 items-center">
+<a class="font-['Noto_Serif'] tracking-widest uppercase text-sm text-[#5f5e5e] hover:text-[#1A1A1A] transition-colors duration-300" href="#">Collections</a>
+<a class="font-['Noto_Serif'] tracking-widest uppercase text-sm text-[#5f5e5e] hover:text-[#1A1A1A] transition-colors duration-300" href="#">Boutiques</a>
+<a class="font-['Noto_Serif'] tracking-widest uppercase text-sm text-[#5f5e5e] hover:text-[#1A1A1A] transition-colors duration-300" href="#">Magazine</a>
+<a class="font-['Noto_Serif'] tracking-widest uppercase text-sm text-[#5f5e5e] hover:text-[#1A1A1A] transition-colors duration-300" href="#">Concierge</a>
+</div>
+<div class="flex items-center space-x-6 text-[#5f5e5e]">
+<button class="hover:opacity-70 transition-opacity"><span class="material-symbols-outlined">shopping_bag</span></button>
+<button class="hover:opacity-70 transition-opacity text-[#735b3a] border-b border-[#735b3a] pb-1"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span></button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-24 h-[calc(100vh-6rem)] w-80 p-8 bg-[#f3f4f1] dark:bg-stone-900 z-40 hidden lg:block">
+<div class="mb-12">
+<div class="w-16 h-16 bg-surface-container-highest mb-4 overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="close-up editorial portrait of a sophisticated man with sharp features in soft natural window lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZEE_wteAA8HtGezXD3casoHeRBMBFTmThsinPsjcRF8epS4voywcq6jGaX1Gg0ZoWFdqkQ6dvXgCPaOlH5NvKWNK1flOmUyf3EC0IdiSoE_E1zWnqbV7QQ4tTT9sRjXayzT-K1oJSSJBvkO9fsCtTcx1jQx9XOTqVEKAXD1Ge2NfIqGtyZ1JlccJnkkqARGeLJhqC354LLtFs77yiGQhBxc5hJxUVw-0kLzXCxi4jFxeIAJkQdTFL6D77oLTv5m6XUv9dPRcgHQw"/>
+</div>
+<h2 class="font-['Noto_Serif'] text-lg uppercase tracking-widest text-[#1A1A1A] dark:text-white">The Member's Club</h2>
+<p class="font-['Manrope'] text-sm tracking-tight text-[#735b3a] uppercase mt-1">Exclusive Access</p>
+</div>
+<nav class="space-y-6">
+<a class="flex items-center space-x-4 text-[#1A1A1A] dark:text-white font-semibold font-['Manrope'] text-sm tracking-tight group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span>Personal Profile</span>
+</a>
+<a class="flex items-center space-x-4 text-[#5f5e5e] dark:text-stone-500 hover:bg-[#e0e3e0] dark:hover:bg-stone-800 p-2 -ml-2 transition-all duration-200 font-['Manrope'] text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Order History</span>
+</a>
+<a class="flex items-center space-x-4 text-[#5f5e5e] dark:text-stone-500 hover:bg-[#e0e3e0] dark:hover:bg-stone-800 p-2 -ml-2 transition-all duration-200 font-['Manrope'] text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span>Wishlist</span>
+</a>
+<a class="flex items-center space-x-4 text-[#5f5e5e] dark:text-stone-500 hover:bg-[#e0e3e0] dark:hover:bg-stone-800 p-2 -ml-2 transition-all duration-200 font-['Manrope'] text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Payment Methods</span>
+</a>
+<a class="flex items-center space-x-4 text-[#5f5e5e] dark:text-stone-500 hover:bg-[#e0e3e0] dark:hover:bg-stone-800 p-2 -ml-2 transition-all duration-200 font-['Manrope'] text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Shipping Addresses</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-80 pt-32 px-8 md:px-16 lg:px-24 pb-24 max-w-7xl mx-auto">
+<!-- Profile Header Section -->
+<section class="mb-20">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div>
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-secondary mb-4 block">Membership Status</span>
+<h1 class="font-headline text-5xl md:text-7xl font-light text-on-surface mb-4 tracking-tight">Julian Thorne</h1>
+<div class="flex items-center space-x-8">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 bg-on-surface rounded-full"></span>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Onyx Member</span>
+</div>
+<span class="font-label text-xs uppercase tracking-widest text-outline">Joined Autumn 2021</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 flex flex-col items-center justify-center text-center">
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary mb-2">Concierge Access</span>
+<p class="font-headline text-lg italic text-on-surface">Private Line Active</p>
+</div>
+</div>
+</section>
+<!-- Active Orders: Bento Grid Layout -->
+<section class="mb-24">
+<div class="flex items-baseline justify-between mb-10">
+<h2 class="font-headline text-3xl font-light tracking-tight">Active Curations</h2>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">2 Items in Progress</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Order Card 1 -->
+<div class="group relative bg-surface-container-low p-1 transition-all duration-500 hover:shadow-[0px_20px_40px_rgba(47,51,49,0.06)]">
+<div class="grid grid-cols-12 gap-0 h-full">
+<div class="col-span-5 relative overflow-hidden h-80">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="minimalist sculptural leather handbag in cream white against a soft limestone background with architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxmFXNWZaF1bQz7I5qQtcjXXDIXR1iRUUvlLhwW3sTnYW_t23cS6mU3NKKui-7ILEozBXBFmOTxvOdmz1PVIKM-vWtF_JQDIWRyoDkoYVuGZv_MVp6hNcG9xHDzRH2dnxFSleniyJjU54QpIAa5pu5L2dwV0POsA_yhP5GacUPhj7p7Kd9EbPHSHD0IMCyXxknStsy8rSZCS8u067n6qvhej0La3ZPGphtClGMpLqhHy84h_OLao9h5oUcywnJ5AfXoJ-BcYwcAP0"/>
+</div>
+<div class="col-span-7 p-8 flex flex-col justify-between">
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mb-2">Maison Margiela Boutique</span>
+<h3 class="font-headline text-xl mb-1">Leather Tabi Frame</h3>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest">Order #LX-99201-A</p>
+</div>
+<div class="mt-8">
+<div class="flex items-center space-x-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm">auto_fix_high</span>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface">Handcrafting</span>
+</div>
+<div class="w-full h-[1px] bg-surface-container-highest relative">
+<div class="absolute top-0 left-0 h-full bg-secondary w-2/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="group relative bg-surface-container-low p-1 transition-all duration-500 hover:shadow-[0px_20px_40px_rgba(47,51,49,0.06)]">
+<div class="grid grid-cols-12 gap-0 h-full">
+<div class="col-span-5 relative overflow-hidden h-80">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close-up of a luxury gold watch with complex gears visible on a dark velvet surface with dramatic cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgVZIhb6feScmPn7DtcNgjVUFvgtiaybZctkz2qhqB8IVB9IZRUnDNFc_5JLu1Vm8e1EMSad0mAgooqUHLGm_PI7nKYsC3Dr3Lxo4WzCKVOIdceMY8io5VlmQH2bL976m4hzCGHScAf4H9iP_eBtS1i_UuTXoztLjONf1aRNIfdYwhmGE8c4-jubKfAZUUL2hMvenhRTm98n1DODOR3bd-IxZ_Ko1JAYTZC6X5xujfLGRdJChMCR_Kn4yBGepUGlnlQXDDZA0cwRY"/>
+</div>
+<div class="col-span-7 p-8 flex flex-col justify-between">
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mb-2">Vacheron Constantin</span>
+<h3 class="font-headline text-xl mb-1">Patrimony Manual</h3>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest">Order #LX-88342-V</p>
+</div>
+<div class="mt-8">
+<div class="flex items-center space-x-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm">local_shipping</span>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface">In Transit</span>
+</div>
+<div class="w-full h-[1px] bg-surface-container-highest relative">
+<div class="absolute top-0 left-0 h-full bg-secondary w-5/6"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Order History Table -->
+<section class="mb-24">
+<h2 class="font-headline text-3xl font-light tracking-tight mb-10">Archive</h2>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-8 py-6 font-label text-[10px] uppercase tracking-[0.2em] text-outline">Date</th>
+<th class="px-8 py-6 font-label text-[10px] uppercase tracking-[0.2em] text-outline">Collection / Piece</th>
+<th class="px-8 py-6 font-label text-[10px] uppercase tracking-[0.2em] text-outline text-right">Investment</th>
+<th class="px-8 py-6 font-label text-[10px] uppercase tracking-[0.2em] text-outline text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-8 font-label text-xs text-on-surface">14 FEB 2024</td>
+<td class="px-8 py-8">
+<div class="flex flex-col">
+<span class="font-headline text-base text-on-surface">Hermès Birkin 30 - Epsom</span>
+<span class="font-label text-[10px] text-outline uppercase tracking-widest">Boutique: Hermès Paris</span>
+</div>
+</td>
+<td class="px-8 py-8 font-headline text-base text-right text-on-surface">$12,850.00</td>
+<td class="px-8 py-8 text-center">
+<span class="font-label text-[10px] uppercase tracking-widest py-1 px-3 bg-surface-container-highest text-on-surface">Delivered</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-8 font-label text-xs text-on-surface">22 NOV 2023</td>
+<td class="px-8 py-8">
+<div class="flex flex-col">
+<span class="font-headline text-base text-on-surface">Saint Laurent Cashmere Overcoat</span>
+<span class="font-label text-[10px] text-outline uppercase tracking-widest">Boutique: Saint Laurent</span>
+</div>
+</td>
+<td class="px-8 py-8 font-headline text-base text-right text-on-surface">$4,200.00</td>
+<td class="px-8 py-8 text-center">
+<span class="font-label text-[10px] uppercase tracking-widest py-1 px-3 bg-surface-container-highest text-on-surface">Delivered</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-8 font-label text-xs text-on-surface">08 SEP 2023</td>
+<td class="px-8 py-8">
+<div class="flex flex-col">
+<span class="font-headline text-base text-on-surface">Cartier Tank Louis XL</span>
+<span class="font-label text-[10px] text-outline uppercase tracking-widest">Boutique: Cartier</span>
+</div>
+</td>
+<td class="px-8 py-8 font-headline text-base text-right text-on-surface">$16,400.00</td>
+<td class="px-8 py-8 text-center">
+<span class="font-label text-[10px] uppercase tracking-widest py-1 px-3 bg-surface-container-highest text-on-surface">Delivered</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="font-headline text-sm italic text-secondary underline underline-offset-8 hover:text-on-surface transition-colors">View Complete Archive</button>
+</div>
+</section>
+<!-- Account Settings / Quick Links -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-10 bg-surface-container text-center group cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4 block">location_on</span>
+<h4 class="font-headline text-lg mb-2">Residences</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest mb-6">Manage global delivery points</p>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary group-hover:underline">Update Addresses</span>
+</div>
+<div class="p-10 bg-surface-container text-center group cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4 block">credit_card</span>
+<h4 class="font-headline text-lg mb-2">Finances</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest mb-6">Secured payment methods</p>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary group-hover:underline">Manage Wallet</span>
+</div>
+<div class="p-10 bg-surface-container text-center group cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4 block">concierge</span>
+<h4 class="font-headline text-lg mb-2">Concierge</h4>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest mb-6">Tailored styling &amp; procurement</p>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary group-hover:underline">Preferences</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-[#1A1A1A] dark:bg-black py-16 px-12 flex flex-col items-center space-y-8 mt-20">
+<div class="font-['Noto_Serif'] text-white text-3xl tracking-[0.4em] uppercase">LUXE ATELIER</div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-stone-500 hover:text-stone-300 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-stone-500 hover:text-stone-300 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-stone-500 hover:text-stone-300 transition-colors" href="#">Sustainability</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-stone-500 hover:text-stone-300 transition-colors" href="#">Accessibility</a>
+</div>
+<div class="h-[1px] w-24 bg-stone-800"></div>
+<div class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-[#faf9f7] opacity-60">
+            © 2024 LUXE ATELIER. DEFINING DIGITAL ELEGANCE.
+        </div>
+</footer>
+</body></html>

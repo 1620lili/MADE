@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | The Digital Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#afb3b0",
+                        "on-tertiary-container": "#5b5c59",
+                        "inverse-primary": "#ffffff",
+                        "surface": "#faf9f7",
+                        "on-surface-variant": "#5c605d",
+                        "error-dim": "#4e0309",
+                        "on-secondary-fixed": "#503c1d",
+                        "tertiary-dim": "#525450",
+                        "primary-dim": "#535252",
+                        "surface-container-highest": "#e0e3e0",
+                        "tertiary": "#5e605c",
+                        "secondary-fixed": "#feddb3",
+                        "on-primary-fixed-variant": "#5c5b5b",
+                        "error-container": "#fe8983",
+                        "primary-fixed-dim": "#d6d4d3",
+                        "inverse-on-surface": "#9d9d9b",
+                        "surface-container-low": "#f3f4f1",
+                        "primary-container": "#e5e2e1",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary": "#fff8f2",
+                        "inverse-surface": "#0d0e0e",
+                        "on-tertiary": "#f9f9f4",
+                        "surface-bright": "#faf9f7",
+                        "tertiary-fixed-dim": "#e5e6e1",
+                        "on-secondary-container": "#644e2e",
+                        "on-error-container": "#752121",
+                        "tertiary-container": "#f4f4ef",
+                        "secondary-container": "#feddb3",
+                        "background": "#faf9f7",
+                        "on-tertiary-fixed-variant": "#656763",
+                        "on-primary-fixed": "#403f3f",
+                        "on-primary-container": "#525151",
+                        "on-surface": "#2f3331",
+                        "on-primary": "#faf7f6",
+                        "on-tertiary-fixed": "#484a47",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#f4f4ef",
+                        "error": "#9f403d",
+                        "secondary-dim": "#664f2f",
+                        "surface-dim": "#d6dbd7",
+                        "on-background": "#2f3331",
+                        "surface-variant": "#e0e3e0",
+                        "surface-container": "#edeeeb",
+                        "surface-container-high": "#e6e9e6",
+                        "surface-tint": "#5f5e5e",
+                        "outline": "#777c79",
+                        "primary": "#5f5e5e",
+                        "on-secondary-fixed-variant": "#6f5836",
+                        "on-error": "#fff7f6",
+                        "secondary": "#735b3a",
+                        "secondary-fixed-dim": "#efd0a6"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#faf9f7] dark:bg-stone-950/90 backdrop-blur-md">
+<div class="flex justify-between items-center px-8 py-6 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<a class="text-stone-500 dark:text-stone-400 font-medium hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-300 font-label text-[0.6875rem] uppercase tracking-widest" href="#">Back to Boutique</a>
+</div>
+<div class="text-xl font-serif tracking-[0.2em] text-stone-800 dark:text-stone-100 uppercase">
+                The Digital Atelier
+            </div>
+<div class="flex items-center gap-6">
+<button class="text-[#5f5e5e] dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-300">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-[#5f5e5e] dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-300">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-8 max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+<!-- Left Column: Checkout Details -->
+<div class="lg:col-span-7">
+<header class="mb-16">
+<h1 class="font-headline text-4xl tracking-tight text-on-surface mb-4">Secure Checkout</h1>
+<p class="font-body text-on-surface-variant tracking-wide">Enter your details to finalize your curated selection.</p>
+</header>
+<form class="space-y-16">
+<!-- Shipping Section -->
+<section>
+<h2 class="font-headline text-xl mb-8 border-b border-outline-variant/20 pb-2">Shipping Destination</h2>
+<div class="grid grid-cols-2 gap-x-8 gap-y-10">
+<div class="col-span-2 sm:col-span-1">
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Given Name</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="e.g. Julian" type="text"/>
+</div>
+<div class="col-span-2 sm:col-span-1">
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Family Name</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="e.g. Vane" type="text"/>
+</div>
+<div class="col-span-2">
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Address Line</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="128 Rue du Faubourg Saint-Honoré" type="text"/>
+</div>
+<div class="col-span-1">
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Postal Code</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="75008" type="text"/>
+</div>
+<div class="col-span-1">
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">City</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="Paris" type="text"/>
+</div>
+</div>
+</section>
+<!-- Shipping Method Section -->
+<section>
+<h2 class="font-headline text-xl mb-8 border-b border-outline-variant/20 pb-2">Delivery Protocol</h2>
+<div class="space-y-4">
+<label class="flex items-center justify-between p-6 bg-surface-container-low cursor-pointer group hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-4">
+<input checked="" class="text-primary focus:ring-0 border-outline" name="shipping" type="radio"/>
+<div>
+<span class="block font-body font-medium">White-Glove Delivery</span>
+<span class="block font-label text-[0.6875rem] text-on-surface-variant uppercase tracking-wider">Scheduled room-of-choice placement &amp; assembly</span>
+</div>
+</div>
+<span class="font-headline text-sm">Included</span>
+</label>
+<label class="flex items-center justify-between p-6 bg-surface-container-low cursor-pointer group hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-4">
+<input class="text-primary focus:ring-0 border-outline" name="shipping" type="radio"/>
+<div>
+<span class="block font-body font-medium">Express Courier</span>
+<span class="block font-label text-[0.6875rem] text-on-surface-variant uppercase tracking-wider">24-hour priority dispatch</span>
+</div>
+</div>
+<span class="font-headline text-sm">€45.00</span>
+</label>
+<label class="flex items-center justify-between p-6 bg-surface-container-low cursor-pointer group hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-4">
+<input class="text-primary focus:ring-0 border-outline" name="shipping" type="radio"/>
+<div>
+<span class="block font-body font-medium">Standard Logistics</span>
+<span class="block font-label text-[0.6875rem] text-on-surface-variant uppercase tracking-wider">3-5 business days</span>
+</div>
+</div>
+<span class="font-headline text-sm">Complimentary</span>
+</label>
+</div>
+</section>
+<!-- Payment Method Section -->
+<section>
+<h2 class="font-headline text-xl mb-8 border-b border-outline-variant/20 pb-2">Financial Instrument</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<button class="flex flex-col items-center justify-center p-6 border border-outline-variant bg-surface-container-lowest hover:border-secondary transition-all group" type="button">
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant group-hover:text-secondary">credit_card</span>
+<span class="font-label text-[0.6875rem] uppercase tracking-widest">Credit Card</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 border border-outline-variant bg-surface-container-lowest hover:border-secondary transition-all group" type="button">
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant group-hover:text-secondary">account_balance</span>
+<span class="font-label text-[0.6875rem] uppercase tracking-widest">Private Line</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 border border-outline-variant bg-surface-container-lowest hover:border-secondary transition-all group" type="button">
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant group-hover:text-secondary">account_balance_wallet</span>
+<span class="font-label text-[0.6875rem] uppercase tracking-widest">Digital Wallet</span>
+</button>
+</div>
+<div class="space-y-10">
+<div>
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Card Number</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="**** **** **** 8802" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Expiration Date</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="MM / YY" type="text"/>
+</div>
+<div>
+<label class="block font-label text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-2">Security Code</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-2 px-0 focus:border-secondary transition-colors" placeholder="***" type="password"/>
+</div>
+</div>
+</div>
+</section>
+</form>
+</div>
+<!-- Right Column: Sticky Order Summary -->
+<div class="lg:col-span-5">
+<div class="sticky top-32 p-10 bg-surface-container-low">
+<h2 class="font-headline text-2xl mb-10 tracking-tight">Curation Summary</h2>
+<div class="space-y-8 mb-12">
+<!-- Item 1 -->
+<div class="flex gap-6">
+<div class="w-24 h-32 bg-surface-container-highest overflow-hidden">
+<img alt="Alabaster Handbag" class="w-full h-full object-cover" data-alt="Luxurious minimalist alabaster white leather handbag presented on a stone pedestal with soft architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfiPAIWeH-yn9UlqK-WzwioK2DcXTT1o1VEEdusDovOSz97jdqQdzPGege05tVgrevryK1Ql2qIQMMcFfGg7aoD9Usou8hMUb07M-R96719meHsJE9kmn_HiJeMmXg3k2iERFSJiIpbDwJh-cFZ1jG_iVAJuktA_cc8feQ_eI6Lz21W_pvWO9Vk4LR0mwsls5abS_ewvlzw7pGk2v4xaEsNKfKJkamrdyR7LgrU4rNpa8tjEfFCSk_C9oqCYHxYIBJN1Koy1l4Rtk"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-sm mb-1 uppercase tracking-wide">Alabaster Handbag</h3>
+<p class="font-label text-[0.6875rem] text-on-surface-variant uppercase tracking-widest">Nappa Leather / Ivory</p>
+</div>
+<span class="font-body text-sm">€2,450.00</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-6">
+<div class="w-24 h-32 bg-surface-container-highest overflow-hidden">
+<img alt="Sculptural Silk Gown" class="w-full h-full object-cover" data-alt="High fashion sculptural silk gown in charcoal grey draped elegantly over a vintage mannequin in a sunlit atelier" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQOmty2k5XjTyUQjtSSy9Mxz4EHeirV5G5rBq6SxlU-D2RFhquXJvjoHUCDD9MAU-JQ5_9SrQAmdYiNR0mPaDNaJCF_whJgjF0gXUs6QFj1C7tfSWRtfwMJJYsrbFjO2VmN2w8VIkGacLKCwMp8cnkwmI-jx1FNtriuZAsawLdwLeZZ7Yojoj_I3S_sEhKL41t-NHNqu5iRXdM5zx0cfJ4knDPfKQDvF7io28wWcIc6BX-bP8HzY7tZFO0_X7qL3ZUNiglms5fVNQ"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-sm mb-1 uppercase tracking-wide">Sculptural Silk Gown</h3>
+<p class="font-label text-[0.6875rem] text-on-surface-variant uppercase tracking-widest">Pure Silk / Obsidian</p>
+</div>
+<span class="font-body text-sm">€4,200.00</span>
+</div>
+</div>
+</div>
+<div class="space-y-4 border-t border-outline-variant/30 pt-8 mb-10">
+<div class="flex justify-between font-body text-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span>€6,650.00</span>
+</div>
+<div class="flex justify-between font-body text-sm">
+<span class="text-on-surface-variant">Shipping (White-Glove)</span>
+<span>Included</span>
+</div>
+<div class="flex justify-between font-body text-sm">
+<span class="text-on-surface-variant">Vat (Included)</span>
+<span>€1,108.33</span>
+</div>
+<div class="flex justify-between font-headline text-xl pt-4 border-t border-outline-variant/10">
+<span>Final Investment</span>
+<span class="font-bold">€6,650.00</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-headline py-6 text-lg hover:bg-stone-800 transition-colors tracking-widest uppercase">
+                        Finalize Purchase
+                    </button>
+<p class="text-center mt-6 font-label text-[0.6rem] text-on-surface-variant uppercase tracking-[0.2em]">
+<span class="material-symbols-outlined text-[0.75rem] align-middle mr-1">lock</span>
+                        Encrypted Transaction Protocol Active
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f3f4f1] dark:bg-stone-900 w-full border-t border-stone-200/10 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-[1440px] mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="font-serif italic text-stone-700 dark:text-stone-300 text-lg mb-4">The Digital Atelier</div>
+<div class="text-[#735b3a] dark:text-stone-400 font-label text-[0.6875rem] uppercase tracking-widest">
+                    © 2024 THE DIGITAL ATELIER. AN EXCLUSIVE CURATION.
+                </div>
+</div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+<a class="text-stone-500 dark:text-stone-500 font-label text-[0.6875rem] uppercase tracking-widest hover:text-[#735b3a] transition-colors duration-300" href="#">Secure Encryption</a>
+<a class="text-stone-500 dark:text-stone-500 font-label text-[0.6875rem] uppercase tracking-widest hover:text-[#735b3a] transition-colors duration-300" href="#">Privacy Protocol</a>
+<a class="text-stone-500 dark:text-stone-500 font-label text-[0.6875rem] uppercase tracking-widest hover:text-[#735b3a] transition-colors duration-300" href="#">Bespoke Service</a>
+<a class="text-stone-500 dark:text-stone-500 font-label text-[0.6875rem] uppercase tracking-widest hover:text-[#735b3a] transition-colors duration-300" href="#">Terms of Exclusivity</a>
+</div>
+</div>
+</footer>
+</body></html>

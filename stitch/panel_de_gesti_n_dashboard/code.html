@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUXE ATELIER | Store Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#e5e6e1",
+              "error-container": "#fe8983",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "error": "#9f403d",
+              "on-primary-container": "#525151",
+              "on-primary-fixed": "#403f3f",
+              "secondary-container": "#feddb3",
+              "surface-dim": "#d6dbd7",
+              "surface-container-highest": "#e0e3e0",
+              "secondary": "#735b3a",
+              "tertiary": "#5e605c",
+              "on-error": "#fff7f6",
+              "on-tertiary": "#f9f9f4",
+              "surface-bright": "#faf9f7",
+              "on-tertiary-fixed-variant": "#656763",
+              "on-secondary": "#fff8f2",
+              "primary-dim": "#535252",
+              "tertiary-container": "#f4f4ef",
+              "on-background": "#2f3331",
+              "on-secondary-fixed": "#503c1d",
+              "on-tertiary-fixed": "#484a47",
+              "surface-tint": "#5f5e5e",
+              "tertiary-fixed": "#f4f4ef",
+              "surface": "#faf9f7",
+              "inverse-surface": "#0d0e0e",
+              "outline": "#777c79",
+              "on-secondary-container": "#644e2e",
+              "on-primary": "#faf7f6",
+              "background": "#faf9f7",
+              "inverse-on-surface": "#9d9d9b",
+              "secondary-dim": "#664f2f",
+              "surface-container": "#edeeeb",
+              "on-error-container": "#752121",
+              "error-dim": "#4e0309",
+              "surface-container-high": "#e6e9e6",
+              "primary-container": "#e5e2e1",
+              "inverse-primary": "#ffffff",
+              "secondary-fixed-dim": "#efd0a6",
+              "primary": "#5f5e5e",
+              "on-surface-variant": "#5c605d",
+              "outline-variant": "#afb3b0",
+              "on-tertiary-container": "#5b5c59",
+              "on-secondary-fixed-variant": "#6f5836",
+              "surface-variant": "#e0e3e0",
+              "secondary-fixed": "#feddb3",
+              "on-surface": "#2f3331",
+              "tertiary-dim": "#525450",
+              "primary-fixed": "#e5e2e1",
+              "surface-container-low": "#f3f4f1",
+              "primary-fixed-dim": "#d6d4d3",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Noto Serif', serif; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #faf9f7; }
+        ::-webkit-scrollbar-thumb { background: #e0e3e0; }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<div class="flex min-h-screen overflow-hidden">
+<!-- SideNavBar (Authority: Shared Components JSON) -->
+<aside class="hidden md:flex flex-col h-screen w-64 bg-neutral-50 dark:bg-neutral-950 py-8 space-y-4 shrink-0 overflow-y-auto">
+<div class="px-8 mb-10">
+<h1 class="font-serif text-lg tracking-wider text-neutral-800 dark:text-neutral-100">Store Manager</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-medium">Maison de Luxe</p>
+</div>
+<nav class="flex flex-col space-y-1">
+<!-- Dashboard (Active) -->
+<a class="flex items-center space-x-4 py-3 text-neutral-900 dark:text-neutral-100 font-bold border-l-2 border-neutral-800 dark:border-neutral-200 pl-4 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+<span class="font-label text-sm tracking-wide">Dashboard</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-neutral-400 dark:text-neutral-600 pl-4 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-label text-sm tracking-wide">Inventory</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-neutral-400 dark:text-neutral-600 pl-4 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="font-label text-sm tracking-wide">Sales</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-neutral-400 dark:text-neutral-600 pl-4 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="insights">insights</span>
+<span class="font-label text-sm tracking-wide">Analytics</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-neutral-400 dark:text-neutral-600 pl-4 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="font-label text-sm tracking-wide">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-8 pt-10 border-t border-transparent space-y-6">
+<div class="space-y-3">
+<a class="block text-[10px] uppercase tracking-[0.2em] text-neutral-400 hover:text-primary transition-colors" href="#">Mall Directory</a>
+<a class="block text-[10px] uppercase tracking-[0.2em] text-neutral-400 hover:text-primary transition-colors" href="#">Support</a>
+<a class="block text-[10px] uppercase tracking-[0.2em] text-error hover:opacity-80 transition-opacity" href="#">Logout</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto bg-background">
+<!-- TopNavBar (Authority: Shared Components JSON) -->
+<header class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md sticky top-0 w-full z-50 flex justify-between items-center px-8 md:px-12 py-6">
+<div class="flex items-center space-x-8">
+<span class="text-2xl font-serif tracking-[0.2em] text-neutral-800 dark:text-neutral-100">LUXE ATELIER</span>
+</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300 font-label text-xs uppercase tracking-widest" href="#">Mall Directory</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300 font-label text-xs uppercase tracking-widest" href="#">My Store</a>
+<a class="text-neutral-900 dark:text-white border-b border-neutral-800 dark:border-white pb-1 font-label text-xs uppercase tracking-widest" href="#">Profile</a>
+</div>
+<div class="flex items-center space-x-6 text-neutral-700 dark:text-neutral-300">
+<span class="material-symbols-outlined cursor-pointer hover:text-neutral-900 scale-100 active:scale-95 transition-transform" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-neutral-900 scale-100 active:scale-95 transition-transform" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<div class="px-8 md:px-12 py-12 max-w-[1400px] mx-auto space-y-16">
+<!-- Welcome Section -->
+<section class="space-y-2">
+<span class="label-sm uppercase tracking-[0.3em] text-secondary font-semibold">Overview</span>
+<h2 class="text-5xl font-headline tracking-tight text-on-surface">Atelier Dashboard</h2>
+</section>
+<!-- Key Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-low p-8 space-y-6 transition-colors duration-300 hover:bg-surface-container">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<span class="text-xs text-on-surface-variant font-medium tracking-widest">+12.4%</span>
+</div>
+<div>
+<p class="text-[11px] uppercase tracking-[0.2em] text-outline mb-1">Total Sales</p>
+<h3 class="text-3xl font-headline">$428,950.00</h3>
+</div>
+<div class="h-12 w-full flex items-end space-x-1">
+<div class="bg-secondary/20 w-full h-1/2"></div>
+<div class="bg-secondary/20 w-full h-2/3"></div>
+<div class="bg-secondary/40 w-full h-1/2"></div>
+<div class="bg-secondary/40 w-full h-4/5"></div>
+<div class="bg-secondary w-full h-3/4"></div>
+<div class="bg-secondary w-full h-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 space-y-6 transition-colors duration-300 hover:bg-surface-container">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary" data-icon="storefront">storefront</span>
+<span class="text-xs text-on-surface-variant font-medium tracking-widest">Active</span>
+</div>
+<div>
+<p class="text-[11px] uppercase tracking-[0.2em] text-outline mb-1">Active Shops</p>
+<h3 class="text-3xl font-headline">24</h3>
+</div>
+<div class="flex -space-x-3 overflow-hidden pt-4">
+<img alt="Admin 1" class="inline-block h-8 w-8 ring-2 ring-surface-container-low bg-neutral-200" data-alt="portrait of elegant female boutique owner in professional attire soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3jGqgVe7TSYc-Hepv4hcC4tb7PW_lbeXNf89kEuC4ejgUEffPxZOcLCXepWLD3jpBJ6OYd-1PWKBPE2dLCPTayzE3m9fEPWMIKVMKSVCxuA9HnehHvpr-HohWPQF6tGWwm5SF7dxYRzO3bX2A6hFfZBZU09Nn4S7PrqUsn7j_gmI6JJGtXEMG6mxvDvQqfV-YN-KQ1hde9g6BaJqTavlYyI-3TS1_RQtmtoc60rxdNT9pjaUPpllGDRIOeWVY40lvoxHn-DZ2QmA"/>
+<img alt="Admin 2" class="inline-block h-8 w-8 ring-2 ring-surface-container-low bg-neutral-200" data-alt="portrait of successful male fashion executive in studio setting high-end" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB7MVgmtHsVQdbMMUgl9rBE4k1NAmBSyxuEsl_VPrcx606CKqWKqAXD2CCwk3dauXboGx9893FMd2cR-l8fjjcP3vI-piQxcnQnje6npA6WSM51WhKIQLPWFNJxoVA1yfRBEEOcddPCR1PJyQ19qhLOsgRGaoM-fyHjScn4P34Ay9tHf52M3t-7dtwbGSIm-b3ll344h63DZIbEdLZ3O1wx9K2oszFr60cJ0cPIJAG2x8oi8iQFfHPVQJUT2qheQXoNqU4Yj1RoOg"/>
+<img alt="Admin 3" class="inline-block h-8 w-8 ring-2 ring-surface-container-low bg-neutral-200" data-alt="close-up of stylish woman with minimalist jewelry soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2fWI-3snx5JnrrmS31uYc4jZ_W7JaoucG_QBZucoW-7zMddC6Es-64R5DwOZ7pEYXaSsZG2TA56xcZqOIe7G2D0X2Kja2oDr5lPkfn12VBM78PMMmV0-yevf2LAJrhZOKdhKD0KEkwBJ8cK8buw8Ph_WS7gKTHsDpDQaT3IcqC0-_FE3nrThrXnvwLHlTmDjfPE68Q6T0snidf_nu03kYx9FBxpWKwzBEls06139fiEFCz1m68J6BfpzVSZm52kZhRbgP0S-Ppek"/>
+<div class="flex items-center justify-center h-8 w-8 ring-2 ring-surface-container-low bg-primary text-[10px] text-white font-bold">+21</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 space-y-6 transition-colors duration-300 hover:bg-surface-container">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-xs text-on-surface-variant font-medium tracking-widest">Today</span>
+</div>
+<div>
+<p class="text-[11px] uppercase tracking-[0.2em] text-outline mb-1">Recent Orders</p>
+<h3 class="text-3xl font-headline">158</h3>
+</div>
+<div class="pt-4 flex items-center space-x-2 text-xs font-medium text-on-surface-variant uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>42 processing</span>
+</div>
+</div>
+</section>
+<!-- Sales Visualization & Details -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="lg:col-span-2 space-y-8">
+<div class="flex justify-between items-end">
+<h3 class="text-2xl font-headline">Revenue Performance</h3>
+<button class="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-on-surface pb-1 hover:text-secondary hover:border-secondary transition-all">Download Report</button>
+</div>
+<div class="aspect-[16/7] bg-surface-container-lowest relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low/50 to-transparent"></div>
+<!-- Mock Data Visualization Line -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 400">
+<path class="opacity-80" d="M0,350 Q100,320 200,340 T400,280 T600,240 T800,120 T1000,80" fill="none" stroke="#735b3a" stroke-width="2.5"></path>
+<path class="opacity-10" d="M0,400 L0,350 Q100,320 200,340 T400,280 T600,240 T800,120 T1000,80 L1000,400 Z" fill="url(#grad1)"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#735b3a;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#735b3a;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between py-4 px-2 opacity-10 pointer-events-none">
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<h3 class="text-2xl font-headline">Global Distribution</h3>
+<div class="aspect-square bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img alt="Market Map" class="w-full h-full object-cover opacity-60" data-alt="minimalist world map outline on textured paper with gold pinpoint markers luxury aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkB6i3FtUfsjh7Oay7jO9E6DT5VlNqckqSuMzZG4XK6SjqxnescEs7GSowZqgAuiPzhiA_7bdoAbzLu3R_JZc7fNku13OeDLkjOYzoXdIWkg_USUwV7Zv1uERXzdC5JAxzHt-CYrmQM30GibODbXHN3JNAU18hTVi3_9vAV78wsYPfaragZwIkY5MECDEgFVhCVRtn1oFtSeEPS5ZloEJSYU9kZm1O5sEUvmWQWSbxD6wW5kdeaastDD-8dXyEIHdxaeuzEPbL308"/>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs tracking-[0.15em] uppercase">
+<span class="text-outline">Paris, France</span>
+<span class="font-bold">42%</span>
+</div>
+<div class="w-full h-[2px] bg-surface-container-highest">
+<div class="bg-secondary h-full w-[42%]"></div>
+</div>
+<div class="flex justify-between items-center text-xs tracking-[0.15em] uppercase">
+<span class="text-outline">Milan, Italy</span>
+<span class="font-bold">28%</span>
+</div>
+<div class="w-full h-[2px] bg-surface-container-highest">
+<div class="bg-secondary h-full w-[28%]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Inventory Table Section -->
+<section class="space-y-8 pb-20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end space-y-4 md:space-y-0">
+<div>
+<h3 class="text-2xl font-headline">Latest Collections</h3>
+<p class="text-xs text-outline tracking-wider uppercase mt-1">Inventory Management Portfolio</p>
+</div>
+<div class="flex space-x-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none focus:ring-0 text-[10px] tracking-[0.2em] py-3 pl-10 pr-6 w-64 placeholder:text-outline/50 uppercase" placeholder="SEARCH PIECES..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 text-[10px] tracking-[0.2em] font-bold uppercase transition-transform active:scale-95">Add Entry</button>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] tracking-[0.3em] uppercase text-outline border-b border-surface-container-highest">
+<th class="py-6 font-medium">Product Piece</th>
+<th class="py-6 font-medium">Collection</th>
+<th class="py-6 font-medium">Stock Status</th>
+<th class="py-6 font-medium">Retail Price</th>
+<th class="py-6 font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container/50">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-16 bg-neutral-200 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="high-end luxury handbag with gold hardware detail on minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6u_0W5IpDVyF_7KFjl0KhikPpDhIMcKi-6lsztnzEMy0ytceDEeX-ryRuntLQCKtF4CsphXLN-xIcPGeQOe8Ucm0hMZEd14USfjnL7lLLt9kiXfFqDDmhSGvOJHHAJ2N7MHBJuDuesn0nEtOuhqwLAezM81nv7TqzZcNpa-202QQKmgc6Yqkd7wNc2KAPmL_LJh0nzOJ796WsZx6aRUNsiWg9yqjxIJo8u-s9d4eb7na4m3tKb37OGFKx4RxoEBdz_5V5aDixHcI"/>
+</div>
+<div>
+<p class="font-serif text-sm tracking-wide group-hover:text-secondary transition-colors">Silk Evening Gown</p>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-0.5">SKU: LA-2024-EV01</p>
+</div>
+</div>
+</td>
+<td class="py-6 text-xs uppercase tracking-widest text-on-surface-variant">Winter 2024</td>
+<td class="py-6">
+<span class="text-[9px] font-bold uppercase tracking-widest px-3 py-1 bg-secondary-container/30 text-secondary">In Stock (12)</span>
+</td>
+<td class="py-6 text-sm font-label">$2,450.00</td>
+<td class="py-6 text-right">
+<button class="material-symbols-outlined text-outline hover:text-on-surface transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-16 bg-neutral-200 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="designer heels artistic presentation with dramatic shadows and minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtnhPKeVtrUwJnbPOnGuhQe0bN_6hylfjisqepuJPFdfH6NMJf5oKCr5wRg4MP8nAvY5v6SiUXm-SB0nLI6MjrDXKDQq4VwMWQILakIewKkqXcwaMC5NZwcqTgMrDE_aBksohQQ1gu2ntuDID_pjE1yJwl2KaGjoEke3N78PMGCVnzCteqP2aWQHe4Cra1ZVgRRJktWrUOlLz8Crd22OIp6BhbbbMVPfAoOdWsDP8GiW1RS0jX0NebULzqlVCu6DkYvC-Loy4Xe00"/>
+</div>
+<div>
+<p class="font-serif text-sm tracking-wide group-hover:text-secondary transition-colors">Leather Chelsea Boot</p>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-0.5">SKU: LA-2024-SH08</p>
+</div>
+</div>
+</td>
+<td class="py-6 text-xs uppercase tracking-widest text-on-surface-variant">Heritage Line</td>
+<td class="py-6">
+<span class="text-[9px] font-bold uppercase tracking-widest px-3 py-1 bg-error-container/20 text-error">Low Stock (2)</span>
+</td>
+<td class="py-6 text-sm font-label">$890.00</td>
+<td class="py-6 text-right">
+<button class="material-symbols-outlined text-outline hover:text-on-surface transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-16 bg-neutral-200 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="minimalist gold jewelry macro shot on neutral textured surface soft focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz7pIkiJfpykDJxRJBJ5liZVc7eU7TzF4krwlwWTDH49j0pRwYkgmu5vN4XqqaUhwKFM5bSMt_L3TNYvVAkqhnIUh6SpdssAQIgC17iOjJV4sFxsD2EGzAoeqbVPIHJfu4199Dgbtl5T07BGLm4puy_H40P1Hht3TNJLybhMyl4U_AtSRw0q9iFeQxEAerO0vw8fmIYwsbw_WxUHEKFse8hpJAwiolkKFssKRvdyKK_afB4S7y45dCV168VeL1XJMyGnKZolJS0bk"/>
+</div>
+<div>
+<p class="font-serif text-sm tracking-wide group-hover:text-secondary transition-colors">Aurelius Gold Ring</p>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-0.5">SKU: LA-2024-JW14</p>
+</div>
+</div>
+</td>
+<td class="py-6 text-xs uppercase tracking-widest text-on-surface-variant">Lumière</td>
+<td class="py-6">
+<span class="text-[9px] font-bold uppercase tracking-widest px-3 py-1 bg-secondary-container/30 text-secondary">In Stock (8)</span>
+</td>
+<td class="py-6 text-sm font-label">$3,120.00</td>
+<td class="py-6 text-right">
+<button class="material-symbols-outlined text-outline hover:text-on-surface transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer (Authority: Shared Components JSON) -->
+<footer class="bg-neutral-100 dark:bg-neutral-950 flex flex-col items-center py-20 px-12 space-y-8 w-full">
+<div class="text-neutral-800 dark:text-neutral-200 font-serif text-2xl tracking-[0.4em]">LUXE ATELIER</div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-6">
+<a class="font-label text-xs uppercase tracking-[0.2em] text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-opacity opacity-100 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="font-label text-xs uppercase tracking-[0.2em] text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-opacity opacity-100 hover:opacity-80" href="#">Terms of Service</a>
+<a class="font-label text-xs uppercase tracking-[0.2em] text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-opacity opacity-100 hover:opacity-80" href="#">Press</a>
+<a class="font-label text-xs uppercase tracking-[0.2em] text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-opacity opacity-100 hover:opacity-80" href="#">Contact</a>
+</div>
+<p class="font-label text-[10px] uppercase tracking-[0.3em] text-neutral-500 dark:text-neutral-400">© 2024 LUXE ATELIER. ALL RIGHTS RESERVED.</p>
+</footer>
+</main>
+</div>
+</body></html>

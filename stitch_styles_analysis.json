@@ -1,0 +1,66 @@
+{
+  "design_system": {
+    "name": "The Digital Atelier",
+    "concept": "High-End Editorial, Luxury, Breathable Layouts, Intentional Asymmetry",
+    "rules": [
+      "No-Line Rule: Prohibit 1px solid borders for sectioning; use background color shifts.",
+      "Ghost Border Fallback: If a border is required, use outline-variant at 15-20% opacity.",
+      "Strict Square: 0px border radius for all standard elements to convey precision.",
+      "Layering Principle: Use surface-container tiers to create depth without relying heavily on shadows.",
+      "Floating Principle: Glassmorphism and Backdrop-blur for floating navigation."
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "headline": "Noto Serif",
+      "body": "Manrope",
+      "label": "Manrope",
+      "icons": "Material Symbols Outlined"
+    },
+    "usage": {
+      "display": "Noto Serif - High contrast, display-lg to headline-lg, generous tracking.",
+      "functional": "Manrope - Clean, architectural, body-md for text, label-sm (all-caps) for specs/breadcrumbs.",
+      "hierarchy": "Prioritize whitespace around typography over size."
+    }
+  },
+  "colors": {
+    "primary": "#5f5e5e",
+    "primary_dim": "#535252",
+    "on_primary": "#faf7f6",
+    "secondary": "#735b3a",
+    "secondary_dim": "#664f2f",
+    "background": "#faf9f7",
+    "surface_lowest": "#ffffff",
+    "surface_low": "#f3f4f1",
+    "surface": "#faf9f7",
+    "surface_container": "#edeeeb",
+    "surface_highest": "#e0e3e0",
+    "on_surface": "#2f3331",
+    "on_surface_variant": "#5c605d",
+    "outline": "#777c79",
+    "outline_variant": "#afb3b0",
+    "error": "#9f403d"
+  },
+  "components": {
+    "buttons": {
+      "primary": "Solid primary background, square corners, generous horizontal padding.",
+      "secondary": "Ghost style, transparent background with outline-variant border.",
+      "tertiary": "Text-only, Noto Serif, underlined."
+    },
+    "inputs": {
+      "style": "No borders except 1px bottom border. On focus, bottom border transitions to secondary.",
+      "labels": "Label sits above the field, Manrope all-caps."
+    },
+    "cards": {
+      "product": "No dividers. Generous spacing (spacing.6). Product image is hero, typography floats below. Use surface-container-low."
+    },
+    "navigation": {
+      "style": "Floating semi-transparent bar with backdrop-blur. Logo centered."
+    }
+  },
+  "shadows": {
+    "ambient": "0px 20px 40px rgba(47, 51, 49, 0.06)",
+    "text_sm": "0 1px 2px rgba(0,0,0,0.1)"
+  },
+  "framework": "Tailwind CSS (via CDN) with custom complete theme overriding, Forms and Container Queries plugins."
+}

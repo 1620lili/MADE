@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUXE ATELIER - Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-container": "#525151",
+              "on-background": "#2f3331",
+              "on-surface-variant": "#5c605d",
+              "outline-variant": "#afb3b0",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "surface-container-low": "#f3f4f1",
+              "on-secondary-fixed": "#503c1d",
+              "secondary-container": "#feddb3",
+              "primary-fixed-dim": "#d6d4d3",
+              "on-primary": "#faf7f6",
+              "on-tertiary": "#f9f9f4",
+              "on-surface": "#2f3331",
+              "tertiary-dim": "#525450",
+              "tertiary-fixed-dim": "#e5e6e1",
+              "tertiary-fixed": "#f4f4ef",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#f4f4ef",
+              "error-dim": "#4e0309",
+              "inverse-surface": "#0d0e0e",
+              "surface-variant": "#e0e3e0",
+              "surface-container-highest": "#e0e3e0",
+              "surface-bright": "#faf9f7",
+              "error-container": "#fe8983",
+              "on-error": "#fff7f6",
+              "inverse-on-surface": "#9d9d9b",
+              "secondary-fixed": "#feddb3",
+              "secondary-dim": "#664f2f",
+              "on-secondary-fixed-variant": "#6f5836",
+              "outline": "#777c79",
+              "on-secondary": "#fff8f2",
+              "error": "#9f403d",
+              "primary-dim": "#535252",
+              "secondary-fixed-dim": "#efd0a6",
+              "on-tertiary-fixed-variant": "#656763",
+              "primary-container": "#e5e2e1",
+              "background": "#faf9f7",
+              "on-secondary-container": "#644e2e",
+              "surface-dim": "#d6dbd7",
+              "tertiary": "#5e605c",
+              "surface-container-high": "#e6e9e6",
+              "primary": "#5f5e5e",
+              "surface-container": "#edeeeb",
+              "primary-fixed": "#e5e2e1",
+              "surface": "#faf9f7",
+              "secondary": "#735b3a",
+              "on-primary-fixed": "#403f3f",
+              "inverse-primary": "#ffffff",
+              "on-error-container": "#752121",
+              "surface-tint": "#5f5e5e",
+              "on-tertiary-fixed": "#484a47",
+              "on-tertiary-container": "#5b5c59"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, .serif-text { font-family: 'Noto Serif', serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar Shell -->
+<aside class="hidden md:flex flex-col h-screen w-72 left-0 fixed border-r-0 bg-[#f3f4f1] dark:bg-[#121212] py-12 px-8 z-50">
+<div class="mb-12">
+<h1 class="text-xl font-serif text-[#1A1A1A] dark:text-[#faf9f7]">Management</h1>
+<p class="uppercase text-[10px] tracking-widest text-[#5f5e5e] mt-1 font-medium">Global Admin</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 text-[#5f5e5e] dark:text-[#735b3a] hover:bg-[#e0e3e0]/50 dark:hover:bg-zinc-800 transition-all duration-300 ease-out-quad" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-serif">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#5f5e5e] dark:text-[#735b3a] hover:bg-[#e0e3e0]/50 dark:hover:bg-zinc-800 transition-all duration-300 ease-out-quad" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-serif">Inventory</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#5f5e5e] dark:text-[#735b3a] hover:bg-[#e0e3e0]/50 dark:hover:bg-zinc-800 transition-all duration-300 ease-out-quad" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-serif">Analytics</span>
+</a>
+<!-- Active Tab: Boutiques -->
+<a class="flex items-center gap-4 px-4 py-3 text-[#1A1A1A] dark:text-white font-bold bg-[#e0e3e0] dark:bg-[#2A2A2A] transition-all duration-300 ease-out-quad" href="#">
+<span class="material-symbols-outlined" data-icon="storefront" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-serif text-lg">Boutiques</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#5f5e5e] dark:text-[#735b3a] hover:bg-[#e0e3e0]/50 dark:hover:bg-zinc-800 transition-all duration-300 ease-out-quad" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-serif">Users</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant/10">
+<button class="w-full py-4 text-xs tracking-widest uppercase bg-primary text-on-primary hover:bg-secondary transition-colors duration-300 font-bold">
+                Support Concierge
+            </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-72 bg-background min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="flex justify-between items-center px-10 py-6 w-full sticky top-0 z-40 bg-[#faf9f7] dark:bg-[#1A1A1A] border-b border-zinc-200/50 dark:border-zinc-800/50">
+<div class="flex items-center">
+<span class="text-2xl font-serif tracking-widest uppercase text-[#1A1A1A] dark:text-[#faf9f7]">Atelier Mall Admin</span>
+</div>
+<div class="flex items-center gap-8">
+<div class="relative hidden lg:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined" data-icon="search">search</span>
+<input class="bg-surface-container-low border-0 border-b border-outline-variant/30 focus:ring-0 focus:border-secondary pl-10 pr-4 py-2 text-[10px] tracking-widest w-64 uppercase" placeholder="BUSCAR BOUTIQUE..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-[#5f5e5e] dark:text-[#f3f4f1]">
+<button class="material-symbols-outlined hover:text-[#735b3a] transition-colors duration-300 scale-100 active:scale-95 ease-out" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined hover:text-[#735b3a] transition-colors duration-300 scale-100 active:scale-95 ease-out" data-icon="settings">settings</button>
+<div class="w-10 h-10 bg-surface-container-highest overflow-hidden">
+<img alt="Administrator Profile" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close up portrait of a professional male administrator in a clean white shirt against a neutral grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh1KZ1V5_fHA0pLQKfMtVgQSo7q_4tsB6j2iNPtAXpo3rasgpy-V6Zt6NiTP_HRA1Azy7ifoPSJQwflMjyPxBeXUpHTpB7bU2oMD0TkWJKpqiaPZLipkeYihl8F_aI655knR5Bj4BEMEpNqG-78G3Yp61TzB-n_hVN-l7mwK-GAkt-3YCrgcuJPqxWBgVl7X1knshWO3qIHFlF33MzcaV6Hq64s1dSVJxlJq_kOJHq0h-giQtz4DLQ94DOWYsVm2jfTmPCN29hmCc"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-10 max-w-7xl mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="space-y-4">
+<p class="text-[10px] tracking-[0.3em] uppercase text-secondary font-bold">Directorio Global</p>
+<h2 class="text-5xl headline font-serif text-on-surface leading-tight">Módulo de Empresas <br/>&amp; Tiendas</h2>
+</div>
+<button class="bg-on-background text-background px-8 py-4 text-[11px] tracking-widest uppercase font-bold flex items-center gap-3 hover:bg-secondary transition-all duration-300 group">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    Registrar Nueva Boutique
+                </button>
+</div>
+<!-- Bento-Inspired Boutique Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Boutique Card 1: Open -->
+<div class="group">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden mb-6">
+<img class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="Exterior of a minimalist luxury boutique with marble accents and soft warm golden lighting during dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmd3MWl4iC332kNnft5vG8RfdNz6c7bTEy6dp9eSyx5Ttmt1eQ21geNW-gPKgYHyLfWbeZvcZz51_zORUBcDVHt830vkkqmG-X6rxdn1GvD1Uum3OY8cO6IEVVLyBfsBOJJpQeKpIEiFzF1eOCyHO6u--HjWkIHS-QdaQNHZKmqmM9zWCZP9uRYfDDB3aqpXFBxaVnswI2pEqzmTFQx_ULIY05H06X68xrlSI7uyKsvQZXTbYIUxcUu0mPwfZqeptVoIaIEGlGvRI"/>
+<div class="absolute top-6 left-6 flex items-center gap-2 bg-background/80 backdrop-blur px-3 py-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] tracking-widest uppercase font-bold text-on-surface">Abierta</span>
+</div>
+<div class="absolute bottom-6 right-6">
+<div class="w-16 h-16 bg-white flex items-center justify-center p-3 shadow-sm">
+<span class="text-xs font-serif italic text-on-surface">VALENTINA</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-serif text-on-surface mb-1">Maison Valentina</h3>
+<p class="text-[11px] uppercase tracking-wider text-on-surface-variant mb-4">Alta Costura &amp; Accesorios</p>
+<div class="flex flex-col gap-1 text-[10px] uppercase tracking-widest text-outline">
+<span>Prop: Isabella Conti</span>
+<span>Ventas: 142 / Mes</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Boutique Card 2: Maintenance -->
+<div class="group">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden mb-6">
+<img class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="High-end interior design store with sculptural furniture and large floor-to-ceiling windows showing a modern city plaza" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC36LGsrDTkXrqsaVmhIX_9AkpNz2OhWHAlsOzyn9Qn63T0yIkz9cADCJnnj9Y_Gaj75EWBXkn2cTqcT-eF3f_9lDp4ywIlvkCPnY-oUgD-xId3SPW4X2YaHfkdF0MkZcfX__rN1tQqmSv8QAnf7zivo5qQgh1A5YyZWQb0PjyxSdADutpDCNEyGp5AH3sxePvZVtqYVt6gRlmBZA-efu-DEoiEzjgvyUQmsPXEHQ9MKVUwwZro8t2wtOLezh8WGrQnXLV5cUenecY"/>
+<div class="absolute top-6 left-6 flex items-center gap-2 bg-background/80 backdrop-blur px-3 py-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+<span class="text-[10px] tracking-widest uppercase font-bold text-on-surface">En Mantenimiento</span>
+</div>
+<div class="absolute bottom-6 right-6">
+<div class="w-16 h-16 bg-white flex items-center justify-center p-3 shadow-sm text-center leading-none">
+<span class="text-xs font-serif italic text-on-surface">AURUM</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-serif text-on-surface mb-1">Aurum Atelier</h3>
+<p class="text-[11px] uppercase tracking-wider text-on-surface-variant mb-4">Joyería Fina</p>
+<div class="flex flex-col gap-1 text-[10px] uppercase tracking-widest text-outline">
+<span>Prop: Julian Sterling</span>
+<span>Ventas: 38 / Mes</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Boutique Card 3: Closed -->
+<div class="group">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden mb-6">
+<img class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="Modern architectural boutique entrance with dark wood paneling and minimalist aesthetic at night with pinpoint spotlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrb5kvVms7hCWyIxvSV4kkBF12P5t_GzudGcqMCU26YaKyxm4C4OvqKCGs9CuQb6-2b4tBc3JyqAjB1EfBaxbXyXQu1X7F2CpqyNYOVqATsNUYJPplA5l1zTh92azhwesCDNBUbzVx8G-gCRNeos9uIvu8lfpTgpRWHBZV9bH7hCpLOesgN--ejuJIKu9kQFzWJm89_tVcQ7_UvuisezZbU0fjuU0B7YwNIlMS7tVnYMnOMvX7YV3g4dO06UrUmdwD0OWNvLwd_DU"/>
+<div class="absolute top-6 left-6 flex items-center gap-2 bg-background/80 backdrop-blur px-3 py-1">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+<span class="text-[10px] tracking-widest uppercase font-bold text-on-surface">Cerrada</span>
+</div>
+<div class="absolute bottom-6 right-6">
+<div class="w-16 h-16 bg-white flex items-center justify-center p-3 shadow-sm">
+<span class="text-xs font-serif italic text-on-surface">NOIR</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-serif text-on-surface mb-1">Noir Concept</h3>
+<p class="text-[11px] uppercase tracking-wider text-on-surface-variant mb-4">Prêt-à-porter</p>
+<div class="flex flex-col gap-1 text-[10px] uppercase tracking-widest text-outline">
+<span>Prop: Marcus Thorne</span>
+<span>Ventas: 215 / Mes</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- List View Alternative (Tonal Layering) -->
+<section class="mt-24">
+<div class="mb-10 border-b border-outline-variant/20 pb-4">
+<h3 class="text-xl font-serif text-on-surface">Resumen de Operaciones</h3>
+</div>
+<div class="space-y-4">
+<!-- Table Header -->
+<div class="grid grid-cols-12 px-6 py-2 text-[10px] tracking-[0.2em] uppercase font-bold text-outline">
+<div class="col-span-4">Establecimiento</div>
+<div class="col-span-3 text-center">Categoría</div>
+<div class="col-span-2 text-center">Desempeño</div>
+<div class="col-span-2 text-center">Estado</div>
+<div class="col-span-1"></div>
+</div>
+<!-- Row 1 -->
+<div class="grid grid-cols-12 items-center px-6 py-6 bg-surface-container-low hover:bg-surface-container transition-colors duration-300">
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Macro photo of a luxury brand logo engraved in high-quality leather" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwYecv6a79Cq8aWrtWB0UIkImdQ6Wh_iH5JT-XO9_ox6ozNT-7X19Z_KUyQUI3SpoZqxC6B7Ka-d3v2-sm2aDURKFb7G78JlMablPrS48VWtuEg_wYToUThB_KVTaiShnElrX56gnHtLZpm6muET99aRdlqz73JOoP5Rj0Gk66iuuW9cZltKU1T0AzYcQ7l-xOzL3xzuZngXqJVraWNdpOtEkgKmoTUGTNqU1mSH37iGL_oz20kca94qIKK5CcekPgTYrETPnBTKw"/>
+</div>
+<div>
+<h4 class="font-serif text-on-surface">L'Artisan Paris</h4>
+<p class="text-[9px] uppercase tracking-widest text-on-secondary-fixed-variant">Helena Vasseur</p>
+</div>
+</div>
+<div class="col-span-3 text-center">
+<span class="px-4 py-1.5 border border-outline-variant/30 text-[9px] uppercase tracking-widest">Fragancias</span>
+</div>
+<div class="col-span-2 text-center">
+<span class="text-sm font-semibold text-on-surface">184 <span class="text-[10px] text-outline font-normal">UNIT</span></span>
+</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[9px] uppercase tracking-widest font-bold">Activo</span>
+</div>
+</div>
+<div class="col-span-1 text-right">
+<button class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</button>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 items-center px-6 py-6 bg-surface-container-low hover:bg-surface-container transition-colors duration-300">
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Minimalist white luxury watch face with silver hands and no numbers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzMsIN6EnrSzxkhdOphzgY_hn2y5UMCtNRwUligrKg_eZC8MmzXwya8VujrFinK0tB3o6ZPWMAHyxGjOP_wxkOVizbQXHkA6iVKV21sYIohGVuV6gcIVztCl3siKu1sk6iwLz8c3xw7nujIn_oc4iz4inUjzV8YCa3t89lXW9aJCHCBUdBK46YHD3Md5S7VTREnNwexH_En_GoPsCBTacRIy78V7btZEA4jE8VCidi9J5v3t-4qOn6sb4uAb11oM9FflVDdw76k9A"/>
+</div>
+<div>
+<h4 class="font-serif text-on-surface">Chronos Luxe</h4>
+<p class="text-[9px] uppercase tracking-widest text-on-secondary-fixed-variant">Victor Drago</p>
+</div>
+</div>
+<div class="col-span-3 text-center">
+<span class="px-4 py-1.5 border border-outline-variant/30 text-[9px] uppercase tracking-widest">Relojería</span>
+</div>
+<div class="col-span-2 text-center">
+<span class="text-sm font-semibold text-on-surface">56 <span class="text-[10px] text-outline font-normal">UNIT</span></span>
+</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[9px] uppercase tracking-widest font-bold">Activo</span>
+</div>
+</div>
+<div class="col-span-1 text-right">
+<button class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button - Only for context -->
+<div class="fixed bottom-10 right-10 z-50 md:hidden">
+<button class="w-16 h-16 bg-primary text-on-primary shadow-xl flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</body></html>

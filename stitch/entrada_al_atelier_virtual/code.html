@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700&amp;family=Manrope:wght@200;300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#faf9f7",
+              "error-container": "#fe8983",
+              "surface": "#faf9f7",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#e5e2e1",
+              "on-tertiary-container": "#5b5c59",
+              "on-primary": "#faf7f6",
+              "surface-container-high": "#e6e9e6",
+              "surface-container": "#edeeeb",
+              "on-secondary-container": "#644e2e",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "secondary-fixed": "#feddb3",
+              "on-primary-fixed": "#403f3f",
+              "background": "#faf9f7",
+              "on-error-container": "#752121",
+              "secondary": "#735b3a",
+              "tertiary-dim": "#525450",
+              "surface-tint": "#5f5e5e",
+              "tertiary-container": "#f4f4ef",
+              "outline-variant": "#afb3b0",
+              "on-tertiary-fixed": "#484a47",
+              "inverse-on-surface": "#9d9d9b",
+              "primary-container": "#e5e2e1",
+              "surface-container-highest": "#e0e3e0",
+              "primary": "#5f5e5e",
+              "primary-fixed-dim": "#d6d4d3",
+              "inverse-surface": "#0d0e0e",
+              "on-tertiary-fixed-variant": "#656763",
+              "tertiary-fixed": "#f4f4ef",
+              "secondary-container": "#feddb3",
+              "on-surface": "#2f3331",
+              "on-surface-variant": "#5c605d",
+              "on-primary-container": "#525151",
+              "tertiary": "#5e605c",
+              "on-error": "#fff7f6",
+              "on-tertiary": "#f9f9f4",
+              "on-secondary": "#fff8f2",
+              "on-secondary-fixed-variant": "#6f5836",
+              "on-background": "#2f3331",
+              "inverse-primary": "#ffffff",
+              "error-dim": "#4e0309",
+              "surface-variant": "#e0e3e0",
+              "primary-dim": "#535252",
+              "outline": "#777c79",
+              "surface-dim": "#d6dbd7",
+              "tertiary-fixed-dim": "#e5e6e1",
+              "secondary-dim": "#664f2f",
+              "error": "#9f403d",
+              "surface-container-low": "#f3f4f1",
+              "secondary-fixed-dim": "#efd0a6",
+              "on-secondary-fixed": "#503c1d"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/30 selection:text-on-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-neutral-950/80 backdrop-blur-xl flex justify-between items-center px-12 py-8 no-border tonal-layering">
+<div class="flex items-center gap-12">
+<span class="font-['Noto_Serif'] text-2xl tracking-[0.3em] font-light text-neutral-800 dark:text-neutral-200">ATELIER</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-['Noto_Serif'] tracking-[0.2em] uppercase text-sm text-neutral-900 dark:text-white border-b border-neutral-900 dark:border-white pb-1 cursor-none transition-all duration-500 ease-out" href="#">Collections</a>
+<a class="font-['Noto_Serif'] tracking-[0.2em] uppercase text-sm text-neutral-500 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors duration-300 cursor-none transition-all duration-500 ease-out" href="#">Bespoke</a>
+<a class="font-['Noto_Serif'] tracking-[0.2em] uppercase text-sm text-neutral-500 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors duration-300 cursor-none transition-all duration-500 ease-out" href="#">The Mall</a>
+<a class="font-['Noto_Serif'] tracking-[0.2em] uppercase text-sm text-neutral-500 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors duration-300 cursor-none transition-all duration-500 ease-out" href="#">Archive</a>
+</div>
+</div>
+<div class="flex items-center gap-6 text-neutral-600 dark:text-neutral-400">
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Cinematic Hero Section: The Grand Opening -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-inverse-surface">
+<!-- Left Obsidian Door Part -->
+<div class="absolute left-0 top-0 w-1/2 h-full bg-neutral-950 border-r border-neutral-800/20 z-10 transition-transform duration-1000 ease-in-out">
+<div class="absolute inset-0 opacity-20 pointer-events-none" data-alt="close-up texture of dark polished obsidian stone with subtle silver veins and soft reflections" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCABPcmPtEZdWw3mvQkJsbNn2CJxmRxF7FXbZJoyKsLRYvkS10gCxWy9X8KhMqWH5_2jW_nSu-SpvXmuTOcxIQDERdC_6DsXA45hiFQs0-vmSyyrUmV5bFZkR4tYgLLoxaQK2Pf4nTaiQwmfH119vpICatPDNFrK2SoKrSfarTlBbI9vcs2v9Dv7YXM8kg72WxsU4TRGylcDgHaXufY9CSOMx8FI1OdWz1q6bJuJFtToBxlymlgV0E1H6I3BnXXNNi7KfF2CfORzHM'); background-size: cover;"></div>
+</div>
+<!-- Right Obsidian Door Part -->
+<div class="absolute right-0 top-0 w-1/2 h-full bg-neutral-950 border-l border-neutral-800/20 z-10 transition-transform duration-1000 ease-in-out">
+<div class="absolute inset-0 opacity-20 pointer-events-none" data-alt="close-up texture of dark polished obsidian stone with subtle silver veins and soft reflections" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_xVlAz2osn3FQxxrVOsTbjvrGBnysaubuqXotqOHO_l03hgC2Rv3SD7Wi88-UT27dn3-cnTsH6xfG1yjwSn1PR_Yz8wFsD5jN_LtF5r1QaxIm7wbSj_ujQfdgd4ixDue_FOJtjWUaB7dpCy-Y11rOYJP5_QMBrV1R3QWYRoVNTRDBkhm_sCq-pnBuCbvMASl1jJwAGbpaojUJjlqpPhyijs0Zm92-hcKgP2zH3N-pap0BvfhCUNiUFz1fBHfRSrsUWnUZyJxfD4Y'); background-size: cover; background-position: right;"></div>
+</div>
+<!-- The Entrance Hall (Behind Doors) -->
+<div class="absolute inset-0 flex items-center justify-center bg-surface-bright">
+<img class="absolute inset-0 w-full h-full object-cover opacity-80" data-alt="minimalist architectural entrance hall with grand white marble columns, symmetrical lines, and soft atmospheric natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGitMAAA2AcZGO5xfb73_Pz1ftBGYB2Rl3GjOBojq0xoX8gRlbzt1X0sWfX7jkUPel2Zy0OvJGdPhv8rPxXdW_cxMhYsSwvoA4BCQCdmEB_XbofzQ7pF-cODsMWoPifrqz5yMtdr3_sR4CRJrj-GLpZpOvwaKBEm50nl89gUEJbCGgHzRldXjs2gSgWhU2HOC5iGicptJBVaXS9LB8QiuZrHovmv0VvMiYMdp0Z4TLkwOh8De8yZlKCkuZm3QCC3hCSf4uqOSqvhQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-bright via-transparent to-transparent"></div>
+</div>
+<!-- Hero Content -->
+<div class="relative z-20 text-center px-6">
+<h1 class="font-headline text-5xl md:text-8xl tracking-[0.4em] uppercase text-white mb-12 mix-blend-difference">LUXE ATELIER</h1>
+<button class="bg-primary hover:bg-primary-dim text-on-primary px-16 py-6 font-label tracking-[0.3em] text-xs uppercase transition-all duration-500 ease-out border border-transparent hover:border-white/20">
+                    ENTRAR AL ATELIER
+                </button>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 text-white/40 font-label tracking-widest text-[10px] animate-pulse">
+                SCROLL TO UNFOLD
+            </div>
+</section>
+<!-- Curated Section (Bento Grid) -->
+<section class="py-32 px-12 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
+<h2 class="font-headline text-4xl md:text-6xl text-on-surface tracking-tight">The Curated <span class="italic font-light">Maison</span></h2>
+<p class="font-body text-on-surface-variant max-w-md text-sm leading-relaxed">
+                        A digital sanctuary where high-fashion meets architectural precision. Explore our limited series of bespoke digital artifacts and physical couture.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[1228px]">
+<!-- Large Feature -->
+<div class="md:col-span-8 group relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105" data-alt="high fashion editorial shot of a model in draped silk garment against a brutalist concrete background with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHT9ZRKy9wsVovdofRplPGXn7zJYIMkYPa86AzJYenAUJoYFr3MmJaVbsE-aPcvSj7bt3GRdnUpIKsBYXjiJi5YMez6wIm3Z48iPLwlUpwRmXtAnoxpV5UddkSBXQmQJ6F8m5cOPSq2nILlnbgacqad6udojqlmqu_0K7H2ftHMzWsu8omNipUITrS1QWKdl9g4BBK7nkI0AgCDaFKlsHu3TY8O4wZwhSyCBGQZy5uo70J5Rdr7Tdc18PPLZN7biT6lXeG7x9loAE"/>
+<div class="absolute bottom-10 left-10 text-white">
+<span class="font-label text-[10px] tracking-widest uppercase mb-2 block">Series 01</span>
+<h3 class="font-headline text-3xl tracking-wide">SILK &amp; SHADOW</h3>
+</div>
+</div>
+<!-- Tall Side Piece -->
+<div class="md:col-span-4 flex flex-col gap-8">
+<div class="flex-1 group relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="luxury perfume bottle on a reflective obsidian surface with golden lighting and smoke tendrils" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA55BTB1__D_ArocnPdFGMZWzV-0CGBWz3uO3DNSyZKLSeU2gOYiri8l2oOO8US8v7B0UT_VSnMWNFWaAO9ZNU4UbzOy37YfD_0YSDxiIWG5HiVAp29JCGqCsU2NZNZhe7TtZU1kXbpi_vK17Oocr7feZrrHHEyLLs4h9z3HVa8O0r1PRWhbj3k-9rLlqEyoy13s5yKvc8AAPVoLDsI6f8Y0MPWuIsz1DOO_hvbY0biwFCkSVKsuF7fF8ZAUXmkgec7AAcp_QDwHtg"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="flex-1 p-10 bg-surface-container-highest flex flex-col justify-end">
+<h4 class="font-headline text-2xl mb-4">The Fragrance Lab</h4>
+<p class="font-body text-on-surface-variant text-xs tracking-wide leading-loose mb-6">Olfactory sculptures designed for the digital native. A sensory bridge between realities.</p>
+<a class="font-headline italic text-sm underline underline-offset-8 decoration-secondary" href="#">Discover Scent</a>
+</div>
+</div>
+<!-- Bottom Wide Piece -->
+<div class="md:col-span-12 group relative overflow-hidden h-[512px]">
+<img class="w-full h-full object-cover opacity-80" data-alt="wide shot of a high-end luxury boutique interior with architectural floating shelves and focused spotlights on accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB41EV9TZEUAxqoUCKx6H2CxUP3SjnCV1y9Gu_LhCk5aE-ZaVLIyS__u5T_WZct7bPVixhCAXdvTN2lQwCclu-9JyxDuTGdGii-n928FLqT7S26B-H1F97N04QjNJAKR7oENHdC9h8srRK-UXdO99yYJNeDwaHzpu3kA9PDuAyCa5jRO6jpL8Q5imXzhyBwsapaLgZA2iAPuBlOiXTfMdYSLYk_iRaiOGuqKFH8x52dXEho_M8xeMRhyib4mId22IDhHh-uki-JIP0"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-surface/90 backdrop-blur-md p-16 text-center max-w-2xl">
+<h3 class="font-headline text-4xl mb-6 tracking-tight">The Digital Vault</h3>
+<p class="font-body text-on-surface-variant text-sm mb-8">Access the archive of past collections and bespoke commissions. Members only.</p>
+<button class="border border-outline px-10 py-4 text-[10px] tracking-[0.3em] uppercase hover:bg-on-surface hover:text-surface transition-colors">Request Access</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Highlight Section -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-6xl mx-auto px-12 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div class="relative order-2 md:order-1">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary/5 -z-10"></div>
+<img class="w-full h-auto shadow-2xl" data-alt="minimalist studio shot of a sculptural luxury handbag in tan leather against a cream background with sharp shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLHptMGMVX8lXqR1IsDVbt6SwclIztQy554OW5Qg0ZHTTMs5XRmGCPyEm8dtWGtL0m6HcKhLxzkBV2nN8hkCRwJiDWwEEpGVGskET4ZRmnOLQbDM8EnlMf-C4CmPyySSW3B7olagqj1_vD2Pz5xp31EvHxEJ6-K8T-SgXs0_WrvgiaGb2KgCgjhiX6nCrDTSHngyt7al_JBVX2v9ybO722NrLKYqAU6BZKUXKNFK9jD6pXoC5jjq2I6FybZT9sHogCZbv2VUr-LXw"/>
+</div>
+<div class="order-1 md:order-2">
+<span class="font-label text-xs tracking-[0.4em] text-secondary uppercase mb-6 block">Featured Artifact</span>
+<h2 class="font-headline text-5xl text-on-surface mb-8 leading-tight tracking-tight">The Alabaster <br/>Carry-all</h2>
+<p class="font-body text-on-surface-variant text-md leading-relaxed mb-10">
+                        Crafted from sustainably sourced architectural leather and hand-finished with brushed obsidian hardware. A testament to quiet luxury and functional art.
+                    </p>
+<div class="flex items-center gap-12 border-t border-outline/20 pt-10">
+<div>
+<span class="block font-label text-[10px] text-outline uppercase mb-1">Price</span>
+<span class="font-headline text-xl">$4,250</span>
+</div>
+<button class="flex-1 bg-on-surface text-surface py-5 tracking-[0.2em] text-[10px] uppercase hover:bg-secondary transition-colors">Acquire Piece</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Join the Atelier -->
+<section class="py-40 bg-background flex flex-col items-center justify-center text-center px-6">
+<h2 class="font-headline text-4xl md:text-5xl mb-8 tracking-wide">Enter the Inner Circle</h2>
+<p class="font-body text-on-surface-variant max-w-lg mb-12 text-sm">Be the first to know about private openings, digital drops, and the evolution of the Atelier.</p>
+<form class="w-full max-w-md flex flex-col gap-6">
+<input class="bg-transparent border-0 border-b border-outline/30 focus:ring-0 focus:border-secondary font-label text-xs tracking-[0.2em] py-4 px-0 w-full text-center placeholder:text-outline/50 uppercase" placeholder="YOUR EMAIL ADDRESS" type="email"/>
+<button class="font-label text-[10px] tracking-[0.4em] uppercase text-on-surface mt-4 border-b border-on-surface pb-2 w-max mx-auto hover:text-secondary hover:border-secondary transition-colors" type="submit">Subscribe</button>
+</form>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-100 dark:bg-neutral-900 w-full border-t-0 flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6 tonal-shift">
+<div class="font-['Manrope'] text-[10px] tracking-widest uppercase text-neutral-500 dark:text-neutral-500">
+            © 2024 THE DIGITAL ATELIER. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-12">
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-neutral-400 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-300 ease-in-out" href="#">Privacy</a>
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-neutral-400 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-300 ease-in-out" href="#">Terms</a>
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-neutral-400 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-300 ease-in-out" href="#">Accessibility</a>
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-neutral-400 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-300 ease-in-out" href="#">Contact</a>
+</div>
+</footer>
+</body></html>
