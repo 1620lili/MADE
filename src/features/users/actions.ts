@@ -201,4 +201,106 @@ export async function updateRolePermissions(roleId: number, permissionIds: numbe
   }
 
   revalidatePath('/admin/usuarios');
+  return { success: true };
+}
+
+export async function updateUser(prevState: any, formData: FormData) {
+  const session = await verifySession();
+  if (!session) return { error: 'No autorizado.' };
+
+  const adminSupabase = getServiceSupabase();
+  const userId = formData.get('userId') as string;
+  const fullName = formData.get('fullName') as string;
+  const email = formData.get('email') as string;
+  const companyIdStr = formData.get('companyId') as string;
+  const roleIdStr = formData.get('roleId') as string;
+  const isActive = formData.get('isActive') === 'true';
+  const companyId = companyIdStr ? parseInt(companyIdStr, 10) : null;
+  const roleId = roleIdStr ? parseInt(roleIdStr, 10) : null;
+
+  try {
+    // 1. UPDATE en Auth
+    await adminSupabase.auth.admin.updateUserById(userId, { email });
+
+    // 2. UPDATE en tabla User
+    const { error: userError } = await adminSupabase
+      .from('User')
+      .update({ fullName, email, companyId, isActive })
+      .eq('id', userId);
+    if (userError) throw userError;
+
+    // 3. UPDATE CompanyUser
+    if (companyId) {
+      await adminSupabase.from('CompanyUser')
+        .upsert({ userId, companyId }, { onConflict: 'userId,companyId' });
+    }
+
+    // 4. UPDATE UserRole
+    if (roleId && companyId) {
+      await adminSupabase.from('UserRole').delete()
+        .eq('userId', userId);
+      await adminSupabase.from('UserRole').insert({ userId, roleId, companyId });
+    }
+
+    revalidatePath('/admin/usuarios');
+    return { success: true };
+  } catch (err: any) {
+    return { error: err.message || 'Error al actualizar el usuario.' };
+  }
+}
+
+export async function createRole(prevState: any, formData: FormData) {
+  const session = await verifySession();
+  if (!session || !session.isSuper) return { error: 'No autorizado.' };
+
+  const name = formData.get('name') as string;
+  const permissionIds = formData.getAll('permissions').map(p => parseInt(p as string));
+
+  if (!name) return { error: 'El nombre del rol es obligatorio.' };
+
+  const adminSupabase = getServiceSupabase();
+
+  try {
+    const { data: role, error } = await adminSupabase
+      .from('Role')
+      .insert({ name })
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    if (permissionIds.length > 0) {
+      await adminSupabase.from('RolePermission').insert(
+        permissionIds.map(pId => ({ roleId: role.id, permissionId: pId }))
+      );
+    }
+
+    revalidatePath('/admin/usuarios');
+    return { success: true };
+  } catch (err: any) {
+    return { error: err.message || 'Error al crear el rol.' };
+  }
+}
+
+export async function createPermission(prevState: any, formData: FormData) {
+  const session = await verifySession();
+  if (!session || !session.isSuper) return { error: 'No autorizado.' };
+
+  const name = formData.get('name') as string;
+  if (!name) return { error: 'El nombre del permiso es obligatorio.' };
+
+  const adminSupabase = getServiceSupabase();
+
+  try {
+    const { error } = await adminSupabase
+      .from('Permission')
+      .insert({ name });
+
+    if (error) throw error;
+
+    revalidatePath('/admin/usuarios');
+    return { success: true };
+  } catch (err: any) {
+    return { error: err.message || 'Error al crear el permiso.' };
+  }
 }

@@ -2,6 +2,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 import { RegisterForm } from '@/components/auth/RegisterForm';
 import { verifySession } from '@/features/auth/session';
 import { redirect } from 'next/navigation';
+import GlobalNavbar from '@/components/common/GlobalNavbar';
 
 export const metadata = {
   title: 'LUXE ATELIER | Authentication',
@@ -16,7 +17,14 @@ export default async function AuthPage() {
   }
 
   return (
-    <div className="relative min-h-screen pt-24 pb-12 flex items-center justify-center px-6 lg:px-12 bg-background">
+    <>
+      <GlobalNavbar 
+        session={null}
+        transparent={false}
+        showSearch={false}
+        showCart={false}
+      />
+      <div className="relative min-h-screen pt-24 pb-12 flex items-center justify-center px-6 lg:px-12 bg-background">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-background/40 z-10 backdrop-blur-sm"></div>
         <img 
@@ -31,5 +39,6 @@ export default async function AuthPage() {
         <RegisterForm />
       </div>
     </div>
+    </>
   );
 }

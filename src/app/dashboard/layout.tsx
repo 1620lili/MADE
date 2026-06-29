@@ -19,10 +19,12 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
   // Redirect to onboarding if no company is associated
   if (!session.companyId) {
-    redirect("/onboarding/create-company");
+    redirect("/onboarding/company");
   }
 
   const adminSupabase = getServiceSupabase();
+  
+  // Get Company Data
   const { data: company } = await adminSupabase
     .from("Company")
     .select("name")
@@ -43,11 +45,18 @@ export default async function DashboardLayout({ children }: { children: ReactNod
       subtitle={company?.name || "Cargando..."} 
       items={dashboardMenuItems} 
       homeHref="/dashboard" 
+      userName={session.fullName}
+      userEmail={session.email}
     />
   );
 
   return (
-    <DashboardLayoutWrapper sidebar={sidebar} headerTitle={company?.name || "Atelier"}>
+    <DashboardLayoutWrapper 
+      sidebar={sidebar} 
+      headerTitle={company?.name || "Atelier"}
+      userName={session.fullName}
+      session={session}
+    >
       {children}
     </DashboardLayoutWrapper>
   );

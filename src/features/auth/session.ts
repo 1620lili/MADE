@@ -23,9 +23,9 @@ export async function verifySession() {
   // Get profile data using Admin client to avoid RLS recursion
   const { data: profile } = await adminSupabase
     .from('User')
-    .select('companyId, isSuper')
+    .select('companyId, isSuper, fullName')
     .eq('id', authUser.id)
-    .single();
+    .maybeSingle();
 
   // Get Role Name via UserRole junction
   const { data: userRoleData } = await adminSupabase
@@ -39,6 +39,7 @@ export async function verifySession() {
   return {
     userId: authUser.id,
     email: authUser.email!,
+    fullName: (profile as any)?.fullName || authUser.email!,
     role: roleName,
     companyId: profile?.companyId,
     isSuper: roleName === 'SUPER_ADMIN' || profile?.isSuper === true,

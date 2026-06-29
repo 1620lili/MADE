@@ -34,7 +34,7 @@ export async function login(prevState: any, formData: FormData) {
       .from('User')
       .select('id, email, fullName, companyId, isSuper, isActive')
       .eq('id', authUser.id)
-      .single();
+      .maybeSingle();
 
     if (userError || !userData) {
       console.error("Fetch User Data Error:", userError);
@@ -61,7 +61,7 @@ export async function login(prevState: any, formData: FormData) {
       if (userData.companyId) {
         redirect('/dashboard');
       } else {
-        redirect('/onboarding/create-company');
+        redirect('/onboarding/company');
       }
     } else {
       redirect('/');

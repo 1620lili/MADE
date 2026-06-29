@@ -1,7 +1,9 @@
 import { verifySession } from '@/features/auth/session';
 import { redirect } from 'next/navigation';
 import { CreateCompanyForm } from '@/components/company/CreateCompanyForm';
+import { logout } from '@/features/auth/actions';
 import Link from 'next/link';
+import GlobalNavbar from '@/components/common/GlobalNavbar';
 
 export const metadata = { title: 'LUXE ATELIER | Foundation' };
 
@@ -11,14 +13,12 @@ export default async function CompanyOnboardingPage() {
 
   return (
     <main className="min-h-screen bg-background flex flex-col selection:bg-secondary-container selection:text-secondary-dim">
-      {/* TopNavBar Simplified */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl flex justify-between items-center px-12 h-24">
-        <Link href="/" className="text-xl font-light tracking-[0.3em] text-on-surface font-headline uppercase">LUXE ATELIER</Link>
-        <Link href="/dashboard" className="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-secondary flex items-center gap-2 transition-colors">
-            <span className="material-symbols-outlined text-sm">arrow_back</span>
-            Return to Profile
-        </Link>
-      </nav>
+      <GlobalNavbar 
+        session={session}
+        transparent={false}
+        showSearch={false}
+        showCart={false}
+      />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col md:flex-row items-center justify-center pt-24">

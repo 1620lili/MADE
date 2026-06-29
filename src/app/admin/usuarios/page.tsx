@@ -112,7 +112,11 @@ export default async function AdminUsersPage({
       />
 
       <section>
-        <UsersTable users={(users as any) || []} />
+        <UsersTable 
+          users={(users as any) || []} 
+          companies={companies || []}
+          roles={roles || []}
+        />
       </section>
     </div>
   );

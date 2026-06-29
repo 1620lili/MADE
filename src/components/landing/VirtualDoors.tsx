@@ -4,93 +4,83 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export default function VirtualDoors({ onOpenComplete }: { onOpenComplete: () => void }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [doorsOpen, setDoorsOpen] = useState(false);
+  const [logoFaded, setLogoFaded] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 2400);
-    return () => clearTimeout(timer);
+    // 1. Abrir las puertas
+    const doorTimer = setTimeout(() => {
+      setDoorsOpen(true);
+    }, 800);
+
+    // 2. Desvanecer el logo intermedio y empezar a mostrar el mall
+    const logoTimer = setTimeout(() => {
+      setLogoFaded(true);
+      onOpenComplete(); // Dispara el fade-in de MallFloor
+    }, 2800);
+
+    return () => {
+      clearTimeout(doorTimer);
+      clearTimeout(logoTimer);
+    };
   }, []);
 
   if (isRemoved) return null;
 
   return (
     <AnimatePresence 
-      onExitComplete={() => {
-        setIsRemoved(true);
-        onOpenComplete();
-      }}
+      onExitComplete={() => setIsRemoved(true)}
     >
-      {!isOpen && (
+      {!logoFaded && (
         <motion.div
            className="fixed inset-0 z-50 flex pointer-events-none"
-           exit={{ opacity: 0 }}
-           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }} 
+           exit={{ opacity: 0, scale: 1.1 }}
+           transition={{ duration: 1.5, ease: "easeInOut" }} 
         >
-          {/* Full logo background covering both doors */}
-          <div className="absolute inset-0 z-0 flex items-center justify-center"
-               style={{ background: 'linear-gradient(135deg, #fde9f1 0%, #f8d0de 50%, #f5c0d0 100%)' }}>
-            <img 
+          {/* CAPA INTERMEDIA: FONDO OSCURO CON EL LOGO */}
+          {/* Esta capa está detrás de las puertas, y es lo primero que se ve al abrirse */}
+          <div className="absolute inset-0 z-0 bg-[#1a1a18] flex items-center justify-center">
+            <motion.img 
               src="/image/made-logo.jpeg" 
-              alt="MADE - A Market for Makers" 
-              className="w-[80%] md:w-[50%] max-w-[600px] h-auto drop-shadow-2xl"
+              alt="MADE" 
+              className="w-[280px] md:w-[450px] h-auto rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 5, ease: "easeOut" }}
             />
           </div>
 
-          {/* Left Door Panel (invisible but clips the logo) */}
-          <motion.div 
-            className="w-1/2 h-full relative z-10"
-            style={{ background: 'linear-gradient(135deg, #fde9f1 0%, #f8d0de 100%)' }}
-            initial={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ duration: 1.6, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
-          >
-            {/* Left half of the full logo */}
-            <div className="absolute inset-0 flex items-center justify-end overflow-hidden">
-              <img 
-                src="/image/made-logo.jpeg" 
-                alt="" 
-                className="w-[160%] md:w-[100vw] max-w-none h-auto absolute left-0 top-1/2 -translate-y-1/2"
-                style={{ transform: 'translateY(-50%)' }}
-              />
-            </div>
-            
-            {/* Door handle */}
-            <div className="absolute top-1/2 right-3 -translate-y-1/2 flex flex-col items-center gap-1.5 opacity-40">
-              <div className="w-[2px] h-10 bg-[#9a6070] rounded-full"></div>
-              <div className="w-2.5 h-2.5 border border-[#9a6070] rounded-full"></div>
-            </div>
-          </motion.div>
-          
-          {/* Right Door Panel */}
-          <motion.div 
-            className="w-1/2 h-full relative z-10"
-            style={{ background: 'linear-gradient(225deg, #fde9f1 0%, #f8d0de 100%)' }}
-            initial={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 1.6, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
-          >
-            {/* Right half of the full logo */}
-            <div className="absolute inset-0 flex items-center justify-start overflow-hidden">
-              <img 
-                src="/image/made-logo.jpeg" 
-                alt="" 
-                className="w-[160%] md:w-[100vw] max-w-none h-auto absolute right-0 top-1/2 -translate-y-1/2"
-                style={{ transform: 'translateY(-50%)' }}
-              />
-            </div>
-
-            {/* Door handle */}
-            <div className="absolute top-1/2 left-3 -translate-y-1/2 flex flex-col items-center gap-1.5 opacity-40">
-              <div className="w-[2px] h-10 bg-[#9a6070] rounded-full"></div>
-              <div className="w-2.5 h-2.5 border border-[#9a6070] rounded-full"></div>
-            </div>
-          </motion.div>
-
-          {/* Center seam */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-[#d4a0b8]/30 z-20"></div>
+          {/* CAPA SUPERIOR: LAS PUERTAS */}
+          <AnimatePresence>
+            {!doorsOpen && (
+              <>
+                {/* PANEL IZQUIERDO */}
+                <motion.div 
+                  className="absolute top-0 left-0 w-1/2 h-full z-10 bg-[#1a1a18] border-r border-white/5 shadow-[10px_0_30px_rgba(0,0,0,0.8)]"
+                  exit={{ x: '-100%' }}
+                  transition={{ duration: 2.2, ease: [0.65, 0, 0.1, 1] }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
+                  <div className="absolute top-1/2 right-4 md:right-8 -translate-y-1/2 opacity-30">
+                    <div className="w-[1px] h-24 bg-white/50" />
+                  </div>
+                </motion.div>
+                
+                {/* PANEL DERECHO */}
+                <motion.div 
+                  className="absolute top-0 right-0 w-1/2 h-full z-10 bg-[#1a1a18] border-l border-white/5 shadow-[-10px_0_30px_rgba(0,0,0,0.8)]"
+                  exit={{ x: '100%' }}
+                  transition={{ duration: 2.2, ease: [0.65, 0, 0.1, 1] }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/40" />
+                  <div className="absolute top-1/2 left-4 md:left-8 -translate-y-1/2 opacity-30">
+                    <div className="w-[1px] h-24 bg-white/50" />
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>

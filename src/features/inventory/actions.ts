@@ -19,18 +19,23 @@ export async function createProduct(prevState: any, formData: FormData) {
   const brand = formData.get('brand') as string;
   const isActive = formData.get('isActive') === 'on';
 
-  // Datos de la variante
-  const sku = formData.get('sku') as string;
-  const priceStr = formData.get('price') as string;
-  const price = parseFloat(priceStr);
-  const stockStr = formData.get('stock') as string;
-  const stock = parseInt(stockStr, 10) || 0;
-  const color = formData.get('color') as string;
-  const size = formData.get('size') as string;
-  const imageUrl = formData.get('imageUrl') as string;
+  // Parsear imágenes y variantes desde JSON
+  const imageUrlsRaw = formData.get('imageUrls') as string;
+  const imageUrls: string[] = imageUrlsRaw ? JSON.parse(imageUrlsRaw) : [];
+  const mainImageIndex = parseInt(formData.get('mainImageIndex') as string || '0');
 
-  if (!name || !sku || isNaN(price) || isNaN(companyId)) {
-    return { error: 'El nombre, SKU y precio son campos obligatorios.' };
+  const variantsRaw = formData.get('variants') as string;
+  const variants = variantsRaw ? JSON.parse(variantsRaw) : [];
+
+  if (!name || variants.length === 0 || isNaN(companyId)) {
+    return { error: 'El nombre y al menos una variante son obligatorios.' };
+  }
+
+  // Validar que cada variante tenga SKU y precio
+  for (const v of variants) {
+    if (!v.sku || !v.price) {
+      return { error: 'Cada variante debe tener SKU y precio.' };
+    }
   }
 
   // Protección extra: Un Admin de Empresa solo puede crear productos para su propia empresa
@@ -54,57 +59,51 @@ export async function createProduct(prevState: any, formData: FormData) {
 
     if (productError) throw productError;
 
-    // PASO 2: Insertar Variante
-    const { data: variant, error: variantError } = await adminSupabase
-      .from('ProductVariant')
-      .insert({
-        productId: product.id,
-        sku,
-        price,
-        color,
-        size,
-        stock,
-        imageUrl: imageUrl || null,
-      })
-      .select()
-      .single();
-
-    if (variantError) throw variantError;
-
-    // PASO 3: Insertar Imagen si existe
-    if (imageUrl) {
-      const { error: imageError } = await adminSupabase
-        .from('ProductImage')
+    // PASO 2: Insertar todas las variantes
+    for (const v of variants) {
+      const { data: variant, error: variantError } = await adminSupabase
+        .from('ProductVariant')
         .insert({
           productId: product.id,
-          url: imageUrl,
-          isMain: true,
-        });
-      
-      if (imageError) console.error("Error al registrar imagen:", imageError);
-    }
+          sku: v.sku,
+          price: parseFloat(v.price),
+          stock: parseInt(v.stock, 10) || 0,
+          color: v.color || null,
+          size: v.size || null,
+          imageUrl: imageUrls[0] || null, // Usamos la primera imagen como default para la variante
+        })
+        .select()
+        .single();
 
-    // PASO 4: Registrar movimiento de inventario inicial si hay stock
-    if (stock > 0) {
-      const { error: movementError } = await adminSupabase
-        .from('InventoryMovement')
-        .insert({
+      if (variantError) throw variantError;
+
+      // Registrar movimiento de inventario inicial si hay stock
+      if (parseInt(v.stock, 10) > 0) {
+        await adminSupabase.from('InventoryMovement').insert({
           variantId: variant.id,
           companyId,
-          userId: session.userId, // Usamos el UUID del usuario autenticado
+          userId: session.userId,
           type: 'IN',
-          quantity: stock,
+          quantity: parseInt(v.stock, 10),
         });
-      
-      if (movementError) console.error("Error al registrar movimiento:", movementError);
+      }
+    }
+
+    // PASO 3: Insertar todas las imágenes
+    for (let i = 0; i < imageUrls.length; i++) {
+      await adminSupabase.from('ProductImage').insert({
+        productId: product.id,
+        url: imageUrls[i],
+        isMain: i === mainImageIndex,
+      });
     }
 
   } catch (err: any) {
     console.error("Error en createProduct:", err);
     if (err.code === '23505') {
-      return { error: 'Este SKU ya está registrado en el sistema. Debe ser único.' };
+      return { error: 'Un SKU ya está registrado. Debe ser único.' };
     }
-    return { error: 'Ocurrió un error interno al intentar catalogar la pieza.' };
+    return { error: 'Error interno al registrar el producto.' };
   }
 
   // Revalidar y redireccionar
@@ -127,4 +126,68 @@ export async function toggleProductStatus(productId: number, currentStatus: bool
   if (error) throw error;
   
   revalidatePath(session.isSuper ? '/admin/inventario' : '/dashboard/inventario');
+}
+
+export async function updateVariant(
+  variantId: number, 
+  data: { price?: number; stock?: number; color?: string; size?: string }
+) {
+  const session = await verifySession();
+  if (!session) throw new Error('No autorizado');
+  const adminSupabase = getServiceSupabase();
+  const { error } = await adminSupabase
+    .from('ProductVariant')
+    .update(data)
+    .eq('id', variantId);
+  if (error) throw error;
+  revalidatePath('/dashboard/inventario');
+  revalidatePath('/admin/inventario');
+}
+
+export async function deleteVariant(variantId: number) {
+  const session = await verifySession();
+  if (!session) throw new Error('No autorizado');
+  const adminSupabase = getServiceSupabase();
+  const { error } = await adminSupabase
+    .from('ProductVariant')
+    .delete()
+    .eq('id', variantId);
+  if (error) throw error;
+  revalidatePath('/dashboard/inventario');
+  revalidatePath('/admin/inventario');
+}
+
+export async function createVariant(
+  productId: number,
+  data: { sku: string; price: number; stock: number; color?: string; size?: string }
+) {
+  const session = await verifySession();
+  if (!session) throw new Error('No autorizado');
+  const adminSupabase = getServiceSupabase();
+  const { error } = await adminSupabase
+    .from('ProductVariant')
+    .insert({
+      productId,
+      ...data,
+      imageUrl: null // Default null for new variants added via modal for now
+    });
+  if (error) throw error;
+  revalidatePath('/dashboard/inventario');
+  revalidatePath('/admin/inventario');
+}
+
+export async function updateProduct(
+  productId: number,
+  data: { name?: string; description?: string; brand?: string; isActive?: boolean }
+) {
+  const session = await verifySession();
+  if (!session) throw new Error('No autorizado');
+  const adminSupabase = getServiceSupabase();
+  const { error } = await adminSupabase
+    .from('Product')
+    .update(data)
+    .eq('id', productId);
+  if (error) throw error;
+  revalidatePath('/dashboard/inventario');
+  revalidatePath('/admin/inventario');
 }

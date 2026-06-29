@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { createClient } from '@/utils/supabase/middleware';
 import { getServiceSupabase } from '@/lib/supabase';
 
-export default async function proxy(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Allow public paths
@@ -33,11 +33,10 @@ export default async function proxy(req: NextRequest) {
     .from('User')
     .select('id, companyId, isSuper')
     .eq('id', user.id)
-    .single();
+    .maybeSingle();
 
   if (profileError || !profile) {
     // If profile is missing but user is auth'd, let them see /auth to break the loop or finish registration
-    // However, we MUST pass the cookies back so the session isn't lost
     const redirectResponse = NextResponse.redirect(new URL('/auth', req.url));
     response.cookies.getAll().forEach((cookie) => {
       redirectResponse.cookies.set(cookie.name, cookie.value);

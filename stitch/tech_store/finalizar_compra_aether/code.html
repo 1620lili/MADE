@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#636464",
+                    "on-error": "#690005",
+                    "on-secondary": "#313030",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-primary": "#003828",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-fixed": "#e3e2e2",
+                    "secondary-container": "#474746",
+                    "surface-container-high": "#2a2a2a",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "primary-container": "#00ffc2",
+                    "on-background": "#e5e2e1",
+                    "inverse-primary": "#006c50",
+                    "secondary-fixed": "#e5e2e1",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "secondary": "#c8c6c5",
+                    "background": "#131313",
+                    "tertiary": "#fffefd",
+                    "surface": "#131313",
+                    "surface-bright": "#3a3939",
+                    "outline-variant": "#3a4a43",
+                    "on-tertiary": "#2f3131",
+                    "on-primary-container": "#007255",
+                    "surface-variant": "#353534",
+                    "surface-tint": "#00e1ab",
+                    "surface-container-highest": "#353534",
+                    "on-surface": "#e5e2e1",
+                    "primary": "#fbfffa",
+                    "primary-fixed-dim": "#00e1ab",
+                    "on-surface-variant": "#b9cbc1",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary-fixed": "#36ffc4",
+                    "surface-container-lowest": "#0e0e0e",
+                    "error": "#ffb4ab",
+                    "tertiary-container": "#e2e1e1",
+                    "on-secondary-container": "#b7b5b4",
+                    "surface-container": "#201f1f",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#00513c",
+                    "on-primary-fixed": "#002116",
+                    "tertiary-fixed-dim": "#c7c6c6",
+                    "outline": "#83958c",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#313030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-page": "64px",
+                    "unit": "8px",
+                    "section-padding": "128px",
+                    "gutter": "32px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-xl": ["Space Grotesk"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #050505; color: #e5e2e1; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .razor-border { border: 1px solid rgba(0, 255, 194, 0.1); }
+        .neon-glow:hover { box-shadow: 0 0 15px rgba(0, 255, 194, 0.4); }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="max-w-[1440px] mx-auto flex justify-between items-center px-8 h-20">
+<div class="text-2xl font-bold tracking-[0.2em] text-[#00FFC2] font-['Space_Grotesk'] uppercase">AETHER</div>
+<nav class="hidden md:flex gap-10">
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] tracking-tighter uppercase hover:text-[#00FFC2] hover:drop-shadow-[0_0_8px_#00FFC2] transition-all duration-300 ease-out" href="#">HARDWARE</a>
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] tracking-tighter uppercase hover:text-[#00FFC2] hover:drop-shadow-[0_0_8px_#00FFC2] transition-all duration-300 ease-out" href="#">COMPONENTS</a>
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] tracking-tighter uppercase hover:text-[#00FFC2] hover:drop-shadow-[0_0_8px_#00FFC2] transition-all duration-300 ease-out" href="#">ACCESSORIES</a>
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] tracking-tighter uppercase hover:text-[#00FFC2] hover:drop-shadow-[0_0_8px_#00FFC2] transition-all duration-300 ease-out" href="#">SUPPORT</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-[#00FFC2] hover:drop-shadow-[0_0_8px_#00FFC2] transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-[#00FFC2] hover:drop-shadow-[0_0_8px_#00FFC2] transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 max-w-[1440px] mx-auto px-8">
+<div class="mb-12">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter uppercase">Checkout</h1>
+<p class="text-on-surface-variant font-body-md mt-2">SECURE ENCRYPTED TRANSACTION // 256-BIT PROTOCOL</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Shipping & Payment -->
+<div class="lg:col-span-8 space-y-16">
+<!-- Shipping Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="w-8 h-8 rounded-full border border-[#00FFC2] flex items-center justify-center text-[#00FFC2] font-headline-md text-sm">01</span>
+<h2 class="font-headline-md text-headline-md tracking-widest uppercase">Shipping Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">FULL NAME</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="ELON T. VOID" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">EMAIL ADDRESS</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="USER@AETHER.TECH" type="email"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">STREET ADDRESS</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="77 NEON DISTRICT, SECTOR 4" type="text"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">CITY</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="NEO TOKYO" type="text"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">COUNTRY</label>
+<select class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none">
+<option>UNITED FEDERATION</option>
+<option>EUROZONE</option>
+<option>ASIA-PACIFIC</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Payment Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="w-8 h-8 rounded-full border border-[#00FFC2] flex items-center justify-center text-[#00FFC2] font-headline-md text-sm">02</span>
+<h2 class="font-headline-md text-headline-md tracking-widest uppercase">Payment Method</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<label class="cursor-pointer">
+<input checked="" class="hidden peer" name="payment" type="radio"/>
+<div class="glass-panel p-6 razor-border peer-checked:border-[#00FFC2] peer-checked:bg-[#00FFC2]/5 flex flex-col items-center gap-3 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant" data-icon="credit_card">credit_card</span>
+<span class="font-label-caps text-label-caps uppercase">Credit Card</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" name="payment" type="radio"/>
+<div class="glass-panel p-6 razor-border peer-checked:border-[#00FFC2] peer-checked:bg-[#00FFC2]/5 flex flex-col items-center gap-3 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps uppercase">PayPal</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" name="payment" type="radio"/>
+<div class="glass-panel p-6 razor-border peer-checked:border-[#00FFC2] peer-checked:bg-[#00FFC2]/5 flex flex-col items-center gap-3 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant" data-icon="currency_bitcoin">currency_bitcoin</span>
+<span class="font-label-caps text-label-caps uppercase">Crypto</span>
+</div>
+</label>
+</div>
+<div class="mt-8 space-y-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">CARD NUMBER</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="**** **** **** 8842" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">EXPIRY</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="MM / YY" type="text"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">CVC</label>
+<input class="w-full bg-surface-container-lowest border border-white/10 px-4 py-4 focus:ring-0 focus:border-[#00FFC2] transition-colors font-body-md text-on-surface outline-none" placeholder="***" type="password"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-4 sticky top-32">
+<div class="glass-panel p-8 razor-border">
+<h3 class="font-headline-md text-headline-md tracking-widest uppercase mb-8 pb-4 border-b border-white/10">Order Summary</h3>
+<div class="space-y-6 mb-8">
+<div class="flex gap-4">
+<div class="w-20 h-20 bg-surface-container-high overflow-hidden razor-border flex-shrink-0">
+<img alt="Hardware 1" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close up of a premium matte black mechanical keyboard with glowing neon cyan backlight in a dark tech environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMRiPmaUvc7-Y8ozIV9g2fornBpkRIn599UOMM8vwaQyQ3uc_l7jQ4XqapMOJtEKQXzTPo0-VTCmFslYsbENeUBjd5SryF5VZXVMmyldbeecvhhxgSMVpQPF-R110WMmtf3Az0fjN_kD088AXBwfzfakwxk2IQ6Jj39oas0XpPG27SVZxccH4OQvUZ-soB7jBNF8Tm9O81NPmuD8ugkISZzdHmYGYxu0kapOGgPhlRGGBoQtyHm55H3-rQ4TUuyCBO13AvUKr8c4Wa"/>
+</div>
+<div class="flex flex-col justify-between">
+<h4 class="font-label-caps text-on-surface uppercase">Titan-X Mechanical Keyboard</h4>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-white/5 font-label-caps text-[10px] text-on-tertiary-container">8K POLLING</span>
+<span class="px-2 py-0.5 bg-white/5 font-label-caps text-[10px] text-on-tertiary-container">BLUE AXIS</span>
+</div>
+<p class="text-[#00FFC2] font-headline-md text-lg">$249.00</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-20 h-20 bg-surface-container-high overflow-hidden razor-border flex-shrink-0">
+<img alt="Hardware 2" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="High-end wireless gaming mouse with sleek carbon fiber texture and neon green light accents on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj5ZGEOgfqQA1M3LvS3JimQ5VmwxjpddE04BFHY1M7PCvy9sqR1PEaimq4MKrh2JPPjQScr0KzHwcXuvFPPcHG0T13RcCeTU6D-8-rykWJsvsgPpz_FixuVIHQwL9TiVWwQyMjPFZwgTzeuuHxyEDPI3e_QmTLs9rBqAV2KzMlaj3yEfJcPZBhJE3ll3hS_jqPRGmQ8ZXJA6AbXUhQNejg_mzlPfEuiPOC5hDIBZS2kq-W9QqGbxvBOULoI7B0e8p_0ZzmEG3G3tHg"/>
+</div>
+<div class="flex flex-col justify-between">
+<h4 class="font-label-caps text-on-surface uppercase">Aether Pulse Mouse</h4>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-white/5 font-label-caps text-[10px] text-on-tertiary-container">WIRELESS</span>
+<span class="px-2 py-0.5 bg-white/5 font-label-caps text-[10px] text-on-tertiary-container">26K DPI</span>
+</div>
+<p class="text-[#00FFC2] font-headline-md text-lg">$129.00</p>
+</div>
+</div>
+</div>
+<div class="space-y-4 pt-6 border-t border-white/10 mb-8 font-label-caps text-on-surface-variant">
+<div class="flex justify-between">
+<span>SUBTOTAL</span>
+<span class="text-on-surface">$378.00</span>
+</div>
+<div class="flex justify-between">
+<span>SHIPPING</span>
+<span class="text-[#00FFC2]">FREE [EXPRESS]</span>
+</div>
+<div class="flex justify-between">
+<span>TAX (EST.)</span>
+<span class="text-on-surface">$30.24</span>
+</div>
+<div class="flex justify-between pt-4 border-t border-white/10 font-headline-md text-headline-md text-[#00FFC2]">
+<span>TOTAL</span>
+<span>$408.24</span>
+</div>
+</div>
+<button class="w-full bg-[#00FFC2] py-6 font-headline-md text-on-primary tracking-[0.2em] uppercase neon-glow transition-all duration-300">
+                        Place Order
+                    </button>
+<p class="text-center mt-6 text-[10px] font-label-caps text-on-tertiary-container uppercase tracking-widest opacity-60">
+                        Orders are typically processed within 120ms.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 border-t border-white/5 bg-[#050505]">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center px-8 gap-6">
+<div class="text-xl font-black text-white tracking-tighter uppercase font-['Space_Grotesk']">AETHER</div>
+<div class="flex gap-8">
+<a class="text-gray-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase hover:text-[#00FFC2] transition-colors duration-300 opacity-80 hover:opacity-100" href="#">PRIVACY</a>
+<a class="text-gray-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase hover:text-[#00FFC2] transition-colors duration-300 opacity-80 hover:opacity-100" href="#">TERMS</a>
+<a class="text-gray-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase hover:text-[#00FFC2] transition-colors duration-300 opacity-80 hover:opacity-100" href="#">WARRANTY</a>
+<a class="text-gray-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase hover:text-[#00FFC2] transition-colors duration-300 opacity-80 hover:opacity-100" href="#">CONTACT</a>
+</div>
+<div class="text-gray-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase opacity-80">
+                © 2024 AETHER TECHNOLOGIES. ENGINEERED FOR PRECISION.
+            </div>
+</div>
+</footer>
+</body></html>

@@ -2,7 +2,8 @@
 
 import { useTransition, useState } from 'react';
 import { updateUserStatus } from '@/features/users/actions';
-import { PasswordResetModal } from './Modals';
+import ChangePasswordModal from './ChangePasswordModal';
+import EditUserModal from './EditUserModal';
 
 interface UserData {
   id: string;
@@ -10,11 +11,15 @@ interface UserData {
   fullName: string | null;
   isSuper: boolean;
   isActive: boolean;
+  companyId: number | null;
   Company?: {
+    id: number;
     name: string;
   } | null;
   UserRole?: {
+    roleId: number;
     Role: {
+      id: number;
       name: string;
     };
   }[];
@@ -22,15 +27,19 @@ interface UserData {
 
 interface UsersTableProps {
   users: UserData[];
+  companies: any[];
+  roles: any[];
   showCompany?: boolean;
 }
 
-export default function UsersTable({ users, showCompany = true }: UsersTableProps) {
+export default function UsersTable({ users, companies, roles, showCompany = true }: UsersTableProps) {
   const [isPending, startTransition] = useTransition();
-  const [resetUserId, setResetUserId] = useState<string | null>(null);
+  const [resetUser, setResetUser] = useState<{ id: string; name: string } | null>(null);
+  const [editUser, setEditUser] = useState<UserData | null>(null);
 
   const handleToggleStatus = (id: string, current: boolean) => {
-    if (!confirm(`¿Estás seguro de ${current ? 'desactivar' : 'activar'} a este usuario?`)) return;
+    const action = current ? 'desactivar' : 'activar';
+    if (!window.confirm(`¿Deseas ${action} este usuario?`)) return;
     
     startTransition(async () => {
       try {
@@ -39,6 +48,13 @@ export default function UsersTable({ users, showCompany = true }: UsersTableProp
         alert('Error al actualizar el estado del usuario');
       }
     });
+  };
+
+  const getInitials = (name: string | null, email: string) => {
+    if (name) {
+      return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+    }
+    return email.substring(0, 2).toUpperCase();
   };
 
   return (
@@ -58,23 +74,18 @@ export default function UsersTable({ users, showCompany = true }: UsersTableProp
           </thead>
           <tbody className="divide-y divide-outline-variant/10">
             {users.map((user) => {
-              const roles = user.UserRole?.map((ur) => ur.Role.name) || [];
-              const roleDisplay = user.isSuper ? 'SUPER_ADMIN' : (roles[0] || 'SIN ROL');
+              const rolesList = user.UserRole?.map((ur) => ur.Role.name) || [];
+              const roleDisplay = user.isSuper ? 'SUPER ADMIN' : (rolesList[0] || 'SIN ROL');
 
               return (
                 <tr key={user.id} className="hover:bg-surface-low/30 transition-colors group">
                   <td className="px-8 py-7">
                     <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-surface-container-low flex items-center justify-center rounded-full border border-outline-variant/10 text-on-surface-variant group-hover:bg-secondary/10 group-hover:text-secondary transition-colors font-headline italic">
-                        {user.fullName?.charAt(0) || user.email.charAt(0).toUpperCase()}
+                      <div className="w-10 h-10 bg-surface-container-low flex items-center justify-center rounded-full border border-outline-variant/10 text-on-surface-variant group-hover:bg-secondary/10 group-hover:text-secondary transition-colors font-headline italic text-sm">
+                        {getInitials(user.fullName, user.email)}
                       </div>
                       <div className="flex flex-col">
-                        <div className="flex items-center space-x-2">
-                           <span className="text-sm font-label font-medium text-on-surface">{user.fullName || 'Pendiente'}</span>
-                           {user.isSuper && (
-                             <span className="w-2 h-2 bg-secondary rounded-full" title="Super Admin"></span>
-                           )}
-                        </div>
+                        <span className="text-sm font-label font-medium text-on-surface">{user.fullName || 'Pendiente'}</span>
                         <span className="text-[10px] text-outline-variant tracking-wider">{user.email}</span>
                       </div>
                     </div>
@@ -89,25 +100,39 @@ export default function UsersTable({ users, showCompany = true }: UsersTableProp
                   )}
 
                   <td className="px-8 py-7 text-center">
-                    <span className={`text-[0.55rem] font-black uppercase tracking-[0.25em] px-3 py-1.5 rounded-sm ${user.isSuper ? 'bg-on-surface text-surface' : 'bg-surface-low text-on-surface-variant border border-outline-variant/10'}`}>
+                    <span className={`text-[0.55rem] font-black uppercase tracking-[0.25em] px-3 py-1.5 rounded-sm ${
+                      user.isSuper 
+                        ? 'bg-[#D4AF37] text-white shadow-sm' 
+                        : 'bg-surface-low text-on-surface-variant border border-outline-variant/10'
+                    }`}>
                       {roleDisplay}
                     </span>
                   </td>
 
                   <td className="px-8 py-7 text-center">
                     <div className="flex items-center justify-center">
-                      <span className={`w-1.5 h-1.5 rounded-full mr-2 ${user.isActive ? 'bg-secondary' : 'bg-error'}`}></span>
-                      <span className="text-[0.6rem] font-bold uppercase tracking-[0.1em] text-on-surface-variant">
-                        {user.isActive ? 'Activo' : 'Suspendido'}
+                      <span className={`text-[0.6rem] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full border ${
+                        user.isActive 
+                          ? 'bg-secondary/10 border-secondary/20 text-secondary' 
+                          : 'bg-outline-variant/10 border-outline-variant/20 text-on-surface-variant opacity-60'
+                      }`}>
+                        {user.isActive ? 'Activo' : 'Inactivo'}
                       </span>
                     </div>
                   </td>
 
                   <td className="px-8 py-7 text-right">
-                    <div className="flex items-center justify-end space-x-4">
+                    <div className="flex items-center justify-end space-x-2">
                       <button 
-                        onClick={() => setResetUserId(user.id)}
-                        className="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors text-lg" 
+                        onClick={() => setEditUser(user)}
+                        className="p-2 material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors text-lg" 
+                        title="Editar Perfil"
+                      >
+                        edit
+                      </button>
+                      <button 
+                        onClick={() => setResetUser({ id: user.id, name: user.fullName || user.email })}
+                        className="p-2 material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors text-lg" 
                         title="Cambiar Contraseña"
                       >
                         lock_reset
@@ -115,12 +140,15 @@ export default function UsersTable({ users, showCompany = true }: UsersTableProp
                       <button 
                         onClick={() => handleToggleStatus(user.id, user.isActive)}
                         disabled={isPending}
-                        className={`material-symbols-outlined transition-colors text-lg ${user.isActive ? 'text-on-surface-variant hover:text-error' : 'text-secondary hover:text-on-surface'}`}
+                        className={`p-2 material-symbols-outlined transition-colors text-lg ${
+                          user.isActive 
+                            ? 'text-on-surface-variant hover:text-error' 
+                            : 'text-secondary hover:text-on-surface'
+                        }`}
                         title={user.isActive ? 'Desactivar' : 'Activar'}
                       >
-                        {user.isActive ? 'person_off' : 'person_check'}
+                        {user.isActive ? 'toggle_on' : 'toggle_off'}
                       </button>
-                      <button className="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors text-lg" title="Editar Perfil">edit</button>
                     </div>
                   </td>
                 </tr>
@@ -137,10 +165,22 @@ export default function UsersTable({ users, showCompany = true }: UsersTableProp
         </table>
       </div>
 
-      {resetUserId && (
-        <PasswordResetModal 
-          userId={resetUserId} 
-          onClose={() => setResetUserId(null)} 
+      {resetUser && (
+        <ChangePasswordModal 
+          isOpen={!!resetUser}
+          userId={resetUser.id} 
+          userName={resetUser.name}
+          onClose={() => setResetUser(null)} 
+        />
+      )}
+
+      {editUser && (
+        <EditUserModal
+          isOpen={!!editUser}
+          user={editUser}
+          companies={companies}
+          roles={roles}
+          onClose={() => setEditUser(null)}
         />
       )}
     </>

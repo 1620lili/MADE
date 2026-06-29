@@ -1,9 +1,11 @@
 import { getServiceSupabase } from '@/lib/supabase';
 import MallClientWrapper from '@/components/landing/MallClientWrapper';
+import { verifySession } from '@/features/auth/session';
 
 export const revalidate = 60; // Revalidate every minute for a more dynamic feel
 
 export default async function Home() {
+  const session = await verifySession();
   const supabase = getServiceSupabase();
   
   const { data: stores, error } = await supabase
@@ -19,6 +21,6 @@ export default async function Home() {
   const validStores = stores || [];
 
   return (
-    <MallClientWrapper stores={validStores} />
+    <MallClientWrapper stores={validStores} session={session} />
   );
 }
